@@ -1619,7 +1619,7 @@ const GQ=[
  ['Abandona toda esperanza. Si llevas coche, mi más sentido pésame.','Nivel máximo de sufrimiento. Andando se llega antes, te lo digo yo.']];
 (()=>{const b=document.createElement('button');b.className='gps-rec';b.type='button';b.id='gpsRec';b.hidden=true;b.title='Volver a seguirte';b.setAttribute('aria-label','Recentrar: volver a seguirte');
  b.innerHTML='🎯<span class="t"> Recentrar</span>';
- b.onclick=()=>{GPS.follow=true;b.hidden=true;if(GPS.last&&!(CUR&&CUR.me))verdict(GPS.last.lat,GPS.last.lon,'Tu ubicación',false,true);if(GPS.last)map.flyTo(offC(GPS.last.lat,GPS.last.lon,Math.max(map.getZoom(),16)),Math.max(map.getZoom(),16),{duration:.6});};
+ b.onclick=()=>{GPS.follow=true;b.hidden=true;if(GPS.last&&!(CUR&&CUR.me))verdict(GPS.last.lat,GPS.last.lon,'Tu ubicación',false,true);if(GPS.last){const z=Math.max(map.getZoom(),16);map.flyTo(gpsCenter(GPS.last.lat,GPS.last.lon,z),z,{duration:.6});}};
  if(mob){$('loc2').after(b);}/* en móvil, en la barra de abajo: a mano del pulgar y sin taparse con el veredicto */
  else{const c=L.control({position:'bottomleft'});c.onAdd=()=>{const w=L.DomUtil.create('div','leaflet-control');L.DomEvent.disableClickPropagation(w);w.appendChild(b);return w;};c.addTo(map);}})();
 function gpsBtns(state){
@@ -1628,15 +1628,55 @@ function gpsBtns(state){
  $('loc').querySelector('.t').textContent=t;$('loc').querySelector('.s').textContent=state==='off'?'📍':'🛰️';$('loc2').innerHTML=state==='on'?'Siguiéndote<small>toca para parar</small>':t;
  $('loc').title=$('loc2').title=state==='off'?'Te sigo por el mapa y calculo el sufrimiento donde estás':'Toca para dejar de seguirte';
 }
+/* Geometría del hueco libre del mapa (px relativos al contenedor del mapa) */
+function gpsGeom(){
+ const mr=map.getContainer().getBoundingClientRect(),tb=document.querySelector('.toolbar').getBoundingClientRect(),vOn=!V.classList.contains('hide'),vr=V.getBoundingClientRect();
+ const mbar=document.querySelector('.mbar'),mbTop=mob&&mbar?mbar.getBoundingClientRect().top-mr.top:mr.height;
+ const g={mr,top:tb.bottom-mr.top,bottom:mob?(vOn?vr.top-mr.top:mbTop):mr.height,xl:0,xr:mr.width};
+ if(!mob&&vOn&&vr.left-mr.left>260)g.xr=vr.left-mr.left;/* escritorio: el veredicto flota a la derecha */
+ return g;
+}
+const RABA_H=72;/* alto del pin de Rabuca (anclado por abajo) + margen */
+/* Reparto del hueco libre cuando te sigo: bocadillo arriba y Rabuca en la parte media-baja;
+   si no cabe todo (móvil pequeño con el veredicto abierto), Rabuca arriba y el bocadillo justo debajo. Nunca encima. */
+function gpsLayout(){
+ const g=gpsGeom(),b=$('gpsBub'),on=b.classList.contains('on'),h=on?b.offsetHeight:0,top0=g.top+8,bot=g.bottom-16,tx=(g.xl+g.xr)/2;
+ if(!on){const t=top0+RABA_H;return {g,tx,ty:bot>t?t+(bot-t)*.55:t,bubTop:top0};}
+ const t=top0+h+6+RABA_H;
+ if(bot>=t)return {g,tx,ty:t+(bot-t)*.55,bubTop:top0};
+ const ty=top0+RABA_H;return {g,tx,ty,bubTop:ty+10};
+}
+function gpsCenter(lat,lon,z){
+ const L0=gpsLayout(),sz=map.getSize();
+ return map.unproject(map.project([lat,lon],z).add([sz.x/2-L0.tx,sz.y/2-L0.ty]),z);
+}
+/* Coloca el bocadillo: siguiéndote, según el reparto de arriba; sin seguirte, bajo la barra de búsqueda. Si en ese momento taparía a Rabuca, se aparta por debajo o por encima */
+function gpsPlaceBub(){
+ const b=$('gpsBub');if(!b.classList.contains('on'))return;
+ const g=gpsGeom(),col=b.offsetParent?b.offsetParent.getBoundingClientRect():g.mr,dx=g.mr.left-col.left,dy=g.mr.top-col.top;
+ const w=Math.max(200,Math.min(420,g.xr-g.xl-20));b.style.maxWidth=w+'px';
+ const cx=(g.xl+g.xr)/2;b.style.left=Math.round(cx+dx)+'px';
+ const h=b.offsetHeight,bw=b.offsetWidth;let top=g.top+8;
+ const e=GPS.mk&&GPS.mk.getElement();
+ if(GPS.follow)top=gpsLayout().bubTop;
+ if(e){/* también mientras el mapa aún se está moviendo */const r=e.getBoundingClientRect(),mt=r.top-g.mr.top-6,mbt=r.bottom-g.mr.top+6,ml=r.left-g.mr.left,mrt=r.right-g.mr.left;
+  const hit=t=>t<mbt&&t+h>mt&&cx-bw/2<mrt&&cx+bw/2>ml;
+  if(hit(top)){const below=mbt+4,above=mt-h-4;top=below+h<=g.bottom?below:above>=g.top?above:below;}}
+ b.style.top=Math.round(top+dy)+'px';
+}
 function gpsBubble(html,col,ms){const b=$('gpsBub');
- /* justo debajo de la barra de búsqueda, para no tapar el veredicto ni los botones */
- const tb=document.querySelector('.toolbar'),mc=document.querySelector('.mapcol');if(tb&&mc)b.style.top=Math.round(tb.getBoundingClientRect().bottom-mc.getBoundingClientRect().top+8)+'px';$('gpsBubT').innerHTML=html;b.style.setProperty('--c',col||'#ff7a45');b.classList.add('on');clearTimeout(gpsBubble.t);gpsBubble.t=setTimeout(()=>b.classList.remove('on'),ms||5500);}
+ $('gpsBubT').innerHTML=html;b.style.setProperty('--c',col||'#ff7a45');b.classList.add('on');gpsPlaceBub();
+ if(GPS.follow&&GPS.last&&GPS.fixes>1)map.panTo(gpsCenter(GPS.last.lat,GPS.last.lon,map.getZoom()),{animate:true,duration:.6});
+ clearTimeout(gpsBubble.t);gpsBubble.t=setTimeout(()=>b.classList.remove('on'),ms||5500);}
+/* Actualiza los números del bocadillo visible sin animación nueva (así nunca contradice al veredicto) */
+function gpsBubRefresh(html,col){const b=$('gpsBub');if(!b.classList.contains('on'))return false;$('gpsBubT').innerHTML=html;b.style.setProperty('--c',col);gpsPlaceBub();return true;}
+map.on('move zoomend',()=>{if(GPS.on)gpsPlaceBub();});
 function gpsWatch(){if(GPS.id===null)GPS.id=navigator.geolocation.watchPosition(gpsPos,gpsErr,GEO_OPT);}
 function gpsUnwatch(){if(GPS.id!==null){navigator.geolocation.clearWatch(GPS.id);GPS.id=null;}}
 function gpsStart(){
  if(!window.isSecureContext){toast('Sin conexión segura (https) el navegador no me deja saber dónde estás. Toca el mapa donde estés 👆',5000);return;}
  if(!navigator.geolocation){toast('Tu navegador no comparte ubicación. Toca el mapa donde estés 👆',4500);return;}
- Object.assign(GPS,{on:true,follow:true,cell:undefined,bubT:0,bubLv:null,paused:false,fixes:0,toWarned:false});
+ Object.assign(GPS,{on:true,follow:true,cell:undefined,bubT:0,bubLv:null,bub:{},paused:false,fixes:0,toWarned:false});
  gpsBtns('wait');toast('Buscándote… 🛰️ Tu ubicación no sale de tu móvil.',8000);gpsWatch();
 }
 function gpsStop(msg){
@@ -1650,7 +1690,7 @@ function gpsMove(la,lo){/* desliza a Rabuca hasta la nueva posición */
  const mk=GPS.mk,from=mk.getLatLng(),t0=performance.now(),T=matchMedia('(prefers-reduced-motion:reduce)').matches?0:900;
  cancelAnimationFrame(GPS.anim);
  const step=now=>{const k=T?Math.min(1,(now-t0)/T):1,e=1-Math.pow(1-k,3),ll=[from.lat+(la-from.lat)*e,from.lng+(lo-from.lng)*e];
-  mk.setLatLng(ll);if(GPS.acc)GPS.acc.setLatLng(ll);if(k<1)GPS.anim=requestAnimationFrame(step);};
+  mk.setLatLng(ll);if(GPS.acc)GPS.acc.setLatLng(ll);if(k<1)GPS.anim=requestAnimationFrame(step);gpsPlaceBub();};
  GPS.anim=requestAnimationFrame(step);
 }
 function gpsPos(pos){
@@ -1663,23 +1703,29 @@ function gpsPos(pos){
   GPS.acc=L.circle([la,lo],{radius:ac,className:'gps-acc',color:'#0f7b5f',weight:1,fillColor:'#0f7b5f',fillOpacity:.1,interactive:false}).addTo(map);
  }else{GPS.acc.setRadius(ac);gpsMove(la,lo);}
  const c=cellAt(la,lo),changed=c!==GPS.cell;
- if(first){goTo(la,lo,'Tu ubicación'+(ac>150?` (±${Math.round(ac)} m)`:''),16,true);}
- else{
-  if(changed&&CUR&&CUR.me)verdict(la,lo,'Tu ubicación'+(ac>150?` (±${Math.round(ac)} m)`:''),true,true);
-  if(GPS.follow)map.panTo(offC(la,lo,map.getZoom()),{animate:true,duration:.8});
- }
- if(changed){GPS.cell=c;gpsCell(c,first,ac);}
+ const lbl='Tu ubicación'+(ac>150?` (±${Math.round(ac)} m)`:'');
+ if(first){verdict(la,lo,lbl,false,true);GPS.cell=c;gpsCell(c,true,ac);const z=Math.max(map.getZoom(),16);map.flyTo(gpsCenter(la,lo,z),z,{duration:.9});return;}
+ if(changed){if(CUR&&CUR.me)verdict(la,lo,lbl,true,true);GPS.cell=c;gpsCell(c,false,ac);}
+ if(GPS.follow)map.panTo(gpsCenter(la,lo,map.getZoom()),{animate:true,duration:.8});
 }
 function gpsCell(c,first,ac){
- const now=Date.now();
- if(!c){if(!first&&GPS.bubLv!=='x'&&now-GPS.bubT>15000){GPS.bubT=now;GPS.bubLv='x';gpsBubble('🤷 <b>Zona sin medir.</b> Aquí no hay señalización municipal cerca y no me invento nada.','#8a96a3');}return;}
- const s=score(c,params()).s,ix=LV.findIndex(l=>s<l.max),l=LV[ix];
- if(first){GPS.bubT=now;GPS.bubLv=ix;
-  gpsBubble(`Te sigo 🦑 Aquí: <b class="l" style="background:${l.col};color:${l.fg}">${l.em} ${l.name}</b> (${Math.round(s)}/100)<small>🔒 Tu ubicación no sale de tu móvil. Solo viaja si envías una queja.${ac>150?' · Precisión baja (±'+fmt(Math.round(ac))+' m)':''}</small>`,l.col,7000);return;}
- /* sin spam: como mucho un aviso cada 15 s, o cada 6 s si cambia el nivel */
+ const now=Date.now(),B=GPS.bub||(GPS.bub={});
+ const X=()=>'🤷 <b>Zona sin medir.</b> Aquí no hay señalización municipal cerca y no me invento nada.';
+ if(!c){
+  if(B.kind&&B.kind!=='x'&&gpsBubRefresh(X(),'#8a96a3')){B.kind='x';GPS.bubLv='x';return;}
+  if(!first&&GPS.bubLv!=='x'&&now-GPS.bubT>15000){GPS.bubT=now;GPS.bubLv='x';B.kind='x';gpsBubble(X(),'#8a96a3');}return;}
+ const s=Math.round(score(c,params()).s),ix=LV.findIndex(l=>s<l.max),l=LV[ix];/* mismo redondeo que el veredicto */
+ const badge=`<b class="l" style="background:${l.col};color:${l.fg}">${l.em} ${l.name}</b> (${s}/100)`;
+ const priv=`<small>🔒 Tu ubicación no sale de tu móvil. Solo viaja si envías una queja.${ac>150?' · Precisión baja (±'+fmt(Math.round(ac))+' m)':''}</small>`;
+ const joke=()=>{if(B.jl!==ix){B.jl=ix;B.joke=pick(GQ[ix]);}return esc(B.joke);};
+ const cellHTML=()=>`<b>Celda nueva:</b> ${badge}<br>${joke()}`;
+ if(first){GPS.bubT=now;GPS.bubLv=ix;B.kind='first';gpsBubble(`Te sigo 🦑 Aquí: ${badge}${priv}`,l.col,7000);return;}
+ /* el bocadillo que se está viendo se actualiza al momento: nunca enseña otra celda distinta a la del veredicto */
+ if(B.kind&&gpsBubRefresh(B.kind==='first'?`Te sigo 🦑 Aquí: ${badge}${priv}`:cellHTML(),l.col)){if(B.kind==='x')B.kind='cell';GPS.bubLv=ix;return;}
+ /* sin spam: como mucho un aviso nuevo cada 15 s, o cada 6 s si cambia el nivel */
  if(now-GPS.bubT<(ix!==GPS.bubLv?6000:15000))return;
- GPS.bubT=now;GPS.bubLv=ix;
- gpsBubble(`<b>Celda nueva:</b> <b class="l" style="background:${l.col};color:${l.fg}">${l.em} ${l.name}</b> (${Math.round(s)}/100)<br>${esc(pick(GQ[ix]))}`,l.col);
+ GPS.bubT=now;GPS.bubLv=ix;B.kind='cell';B.jl=null;
+ gpsBubble(cellHTML(),l.col);
 }
 function gpsErr(err){
  if(!GPS.on)return;
