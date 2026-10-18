@@ -965,6 +965,11 @@ html.intro-back #inSkip{order:-1}
 .zzz i:nth-child(1){left:0;bottom:0;font-size:.8rem}.zzz i:nth-child(2){left:8px;bottom:8px;font-size:1rem;animation-delay:.8s}.zzz i:nth-child(3){left:16px;bottom:16px;font-size:1.25rem;animation-delay:1.6s}
 @keyframes zz{0%{opacity:0;transform:translateY(6px)}30%{opacity:1}100%{opacity:0;transform:translateY(-10px)}}
 @keyframes sn-snore{0%,100%{transform:rotate(-8deg) scale(1)}50%{transform:rotate(-14deg) scale(1.06)}}
+.in-ol{list-style:none;margin:2px 0;padding:0;display:grid;gap:8px}
+.in-ol li{display:flex;gap:10px;align-items:flex-start;font-size:.93rem;line-height:1.35}
+.in-ol li>span:first-child{flex:none;width:24px;height:24px;border-radius:50%;background:#ff7a45;color:#fff;font-weight:900;font-size:.85rem;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.bub.ok{background:#e9f7ef;color:#16412a;border:2px solid #8fd1a8}
+.bub.ok b,.bub.ok i{color:#0f3320}
 /* navegación */
 .in-nav{flex:none;display:flex;align-items:center;gap:10px;padding:10px 0 calc(14px + env(safe-area-inset-bottom))}
 .in-nav[hidden]{display:none}
@@ -997,6 +1002,51 @@ html.intro-back #inSkip{order:-1}
 .li-card{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
 .li-card p{margin:0}
 @media (min-width:1024px){.in-slide>.li-link,.in-hero .li-link{align-self:flex-start}}
+@media (max-height:760px) and (max-width:599px){.in-hero{gap:7px;padding-top:6px}}
+/* quejas ciudadanas */
+.tb-q{display:flex;align-items:center;gap:8px;pointer-events:none;max-width:560px}
+.btn-queja{pointer-events:auto;margin-left:auto;flex:none;border:0;border-radius:999px;min-height:42px;padding:0 16px;background:#fff;color:#b3261e;font-weight:800;font-size:.92rem;box-shadow:0 4px 14px #0f2a4733;border:2px solid #f5b5b0;cursor:pointer;white-space:nowrap}
+.btn-queja:hover{background:#fff4f3}
+.btn-queja:active{transform:scale(.97)}
+@media (min-width:861px){.tb-q{max-width:none}.btn-queja{margin-left:0}}
+body.q-picking #map{cursor:crosshair}
+body.q-picking .toolbar,body.q-picking .verdict,body.q-picking .mbar{visibility:hidden}
+.q-bar{position:absolute;z-index:1005;top:10px;left:10px;right:10px;max-width:560px;background:#14202e;color:#fff;border-radius:16px;padding:12px 14px;box-shadow:0 10px 30px #0006;display:flex;flex-direction:column;gap:10px}
+.q-bar[hidden]{display:none}
+.q-bar b{font-size:1rem;line-height:1.3}
+.q-bar-b{display:flex;gap:8px}
+.q-bar-b .btn{min-height:44px;flex:1;background:#ffffff1a;color:#fff;border-color:#ffffff33}
+.q-pin{font-size:30px;line-height:40px;text-align:center;width:40px;height:40px;background:#fff;border-radius:50%;box-shadow:0 3px 8px #0006;border:2px solid #e63946;font-size:24px}
+.q-pin{display:flex;align-items:center;justify-content:center}
+.q-modal .box{max-height:92vh;max-height:92dvh;overflow:auto}
+.q-where{margin:0 0 8px;font-size:.88rem;color:var(--mut)}
+.q-lbl{display:block;font-weight:800;font-size:.9rem;margin:10px 0 6px}
+.q-mots{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.q-mot{display:flex;align-items:center;gap:8px;min-height:46px;border:2px solid var(--line);background:#fff;border-radius:12px;padding:6px 10px;font-size:.88rem;font-weight:700;text-align:left;cursor:pointer;line-height:1.2}
+.q-mot span{font-size:1.25rem}
+.q-mot[aria-pressed="true"]{border-color:var(--c);background:color-mix(in srgb,var(--c) 12%,#fff);box-shadow:0 0 0 2px color-mix(in srgb,var(--c) 30%,transparent)}
+.q-modal textarea{min-height:76px}
+.q-cnt{text-align:right;font-size:.76rem;color:var(--mut);margin-top:2px}
+.q-cnt.lim{color:#b3261e;font-weight:700}
+.q-priv{font-size:.8rem;line-height:1.4;background:#eef7f1;color:#1d4d2f;border-radius:10px;padding:8px 10px;margin:8px 0}
+.q-why{font-size:.84rem;color:var(--mut)}
+.q-why summary{cursor:pointer;font-weight:700;color:var(--ink);min-height:32px;display:flex;align-items:center}
+.q-why p{margin:4px 0 0;line-height:1.45}
+.q-err{color:#b3261e;font-weight:700;font-size:.86rem;min-height:1.2em;margin:6px 0 0}
+.q-done{text-align:center;padding:6px 0}
+.q-done .raba{width:84px;height:102px;display:block;margin:0 auto 6px}
+.q-done h3{justify-content:center;margin:4px 0}
+.q-done p{font-size:1.05rem;line-height:1.4;margin:4px 0 8px}
+.q-count{font-size:.95rem;margin-bottom:8px}.q-count>b{font-size:1.6rem;font-weight:900;letter-spacing:-.02em}
+.q-count small{color:var(--mut)}
+.q-bys{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.q-by{font-size:.8rem;border-radius:999px;padding:4px 10px;background:color-mix(in srgb,var(--c) 12%,#fff);border:1px solid color-mix(in srgb,var(--c) 35%,#fff)}
+.q-empty{font-size:.85rem;color:var(--mut)}
+.q-panel-btn{width:100%;min-height:46px;margin-bottom:8px}
+.q-open summary{cursor:pointer;font-weight:700;font-size:.92rem;min-height:36px;display:flex;align-items:center}
+.q-api{white-space:pre-wrap;word-break:break-all;font-size:.7rem}
+.q-com{font-style:italic}
+.q-pop-note{color:#7a5a00}
 /* botón de repetir en la cabecera */
 .top .ttl{flex:1;min-width:0}
 .ask{flex:none;display:flex;align-items:center;gap:8px;border:1.5px solid #ffffff55;background:#ffffff14;color:#fff;border-radius:999px;min-height:44px;min-width:44px;padding:0 14px 0 6px;font-weight:800;font-size:.9rem;cursor:pointer;white-space:nowrap}
@@ -1066,23 +1116,23 @@ try{if(localStorage.getItem('rabuca-intro-v1'))d.classList.add('intro-back');}ca
      <h2>¿Cuánto vas a sufrir para <em>aparcar en Santander</em>?</h2>
      <p>Rabuca, la raba más resabida de Puertochico, te lo cuenta en un minuto. Después, al mapa.</p>
      <div class="in-cta"><button class="in-btn pri" id="inStart" type="button">Cuéntamelo, Rabuca 🦑</button><button class="in-btn ghost" id="inSkip" type="button">Saltar al mapa →</button></div>
-     <p class="in-note"><span class="nb">Spoiler: no te va a buscar sitio. Pero te va a avisar.</span><span class="bk">¿Otra vez por aquí? Rabuca se alegra. Si ya te la sabes, directo al mapa.</span></p>
+     <p class="in-note"><span class="nb">Spoiler: no te va a buscar sitio. Pero te va a avisar. Y si no aparcas, ¡quéjate! 😤</span><span class="bk">¿Otra vez por aquí? Si ya te la sabes, directo al mapa. Y si no aparcas, ¡quéjate! 😤</span></p>
      <a class="li-link dk" href="https://www.linkedin.com/in/carlosperezdelmolino/" target="_blank" rel="noopener" aria-label="Hecho por Carlos Pérez del Molino: hablamos en LinkedIn (se abre en una pestaña nueva)"><svg class="li-ic" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.064 2.064 0 1 1 0-4.128 2.064 2.064 0 0 1 0 4.128zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span>Hecho por <b>Carlos Pérez del Molino</b> · Hablamos en LinkedIn</span></a>
     </section>
-    <section class="in-slide" data-p="🚗" aria-label="Paso 1 de 6">
+    <section class="in-slide" data-p="🚗" aria-label="Paso 1 de 7">
      <p class="in-h">1 · ¿Y esta quién es?</p>
      <p class="bub">¡Ay va, hola! Soy <b>Rabuca</b>: una tira de calamar rebozada, de aquí de toda la vida, torcida y con grumos, como las buenas.</p>
      <p class="bub">Sí, en tira, como se piden en cualquier barra de Santander. Con los dedos y con un chorrito de limón. 🍋</p>
      <p class="bub">Me paso el verano en una barra del Sardinero viendo coches dar vueltas a la manzana. Más vueltas que yo en la freidora.</p>
      <p class="bub">Así que he hecho un mapa para que sepas, antes de coger el coche, <b>cuánto vas a sufrir para aparcar</b>.</p>
     </section>
-    <section class="in-slide" data-p="📊" aria-label="Paso 2 de 6">
+    <section class="in-slide" data-p="📊" aria-label="Paso 2 de 7">
      <p class="in-h">2 · El ISA</p>
      <p class="bub">Lo he llamado <b>Índice de Sufrimiento Aparcacionista</b>. ISA, para los amigos. Va de 0 a 100 y tiene cinco caras:</p>
      <div class="bub"><div class="in-lv" id="inLv"></div></div>
      <p class="bub">En el mapa lo verás por colores: azul, tranquilidad; rojo, ve mirando el horario del bus.</p>
     </section>
-    <section class="in-slide" data-p="🧮" aria-label="Paso 3 de 6">
+    <section class="in-slide" data-p="🧮" aria-label="Paso 3 de 7">
      <p class="in-h">3 · La receta</p>
      <p class="bub">¿Que de dónde saco el número? Como el buen rebozado, lleva su receta:</p>
      <div class="bub"><ul>
@@ -1094,13 +1144,13 @@ try{if(localStorage.getItem('rabuca-intro-v1'))d.classList.add('intro-back');}ca
      </ul></div>
      <p class="bub">Todo eso, mezclado en una rejilla de celdas de 150 m. Mates y rebozado.</p>
     </section>
-    <section class="in-slide" data-p="🧐" aria-label="Paso 4 de 6">
+    <section class="in-slide" data-p="🧐" aria-label="Paso 4 de 7">
      <p class="in-h">4 · Un momentín en serio</p>
      <p class="bub warn">⚠️ Esto <b>no son plazas libres en tiempo real</b>. Es una estimación de lo complicado que suele estar aparcar en cada zona, según cómo está organizada la calle.</p>
      <p class="bub">Lo saco de los <b>datos abiertos del Ayuntamiento de Santander</b> (datos.santander.es, licencia CC BY 4.0). Nadie me chiva los huecos.</p>
      <p class="bub">Así que si ves un sitio libre en una zona 💀, no te pellizques: aparca y no se lo cuentes a nadie.</p>
     </section>
-    <section class="in-slide" data-p="👻" aria-label="Paso 5 de 6">
+    <section class="in-slide" data-p="👻" aria-label="Paso 5 de 7">
      <p class="in-h">5 · Los sensores fantasma</p>
      <p class="bub">«Oye, Rabuca, ¿Santander no era una <i>smart city</i> llena de sensores de aparcamiento?»</p>
      <p class="bub">Haberlos, haylos. Te presento a uno:</p>
@@ -1109,8 +1159,18 @@ try{if(localStorage.getItem('rabuca-intro-v1'))d.classList.add('intro-back');}ca
      <p class="bub">En 2023 llegaron <b>455 sensores nuevos</b>. ¿Sus datos en abierto? Ni en el portal, ni en un pósit, ni en una botella flotando por la bahía.</p>
      <p class="bub warn">Querido Ayuntamiento: soltad esos datos y os lo pinto en tiempo real. Las rabas, a mi cuenta. 🦑</p>
     </section>
-    <section class="in-slide" data-p="📱" aria-label="Paso 6 de 6">
-     <p class="in-h">6 · Cómo se usa</p>
+    <section class="in-slide" data-p="📣" aria-label="Paso 6 de 7">
+     <p class="in-h">6 · ¿Harto de dar vueltas? Que se oiga</p>
+     <p class="bub">Dar vueltas a la manzana no sale en ninguna estadística. Tu queja, sí:</p>
+     <div class="bub"><ol class="in-ol">
+      <li><span>1</span><span>Pulsa <b>😤 Me quejo aquí</b> y marca en el mapa dónde no has podido aparcar.</span></li>
+      <li><span>2</span><span>Elige el motivo y, si quieres, deja un comentario. <b>Anónimo</b>: ni nombre, ni correo.</span></li>
+      <li><span>3</span><span>Se convierte en <b>datos abiertos</b> (CSV y GeoJSON, CC BY 4.0) para quien quiera: prensa, asociaciones de vecinos o el propio Ayuntamiento.</span></li>
+     </ol></div>
+     <p class="bub ok">Santander ya invirtió en sensores y en una plataforma <i>smart city</i>. Si se abren esos datos y se juntan con lo que contamos los vecinos, pueden servir para algo que se note: aparcar sin dar vueltas. 🦑</p>
+    </section>
+    <section class="in-slide" data-p="📱" aria-label="Paso 7 de 7">
+     <p class="in-h">7 · Cómo se usa</p>
      <div class="bub">Más fácil que pedir unas rabas:<ul>
       <li><span>📍</span><span><b>¿Dónde estoy?</b> Te digo cuánto sufres justo donde estás.</span></li>
       <li><span>🔎</span><span><b>Buscador.</b> Escribe a dónde vas: Valdecilla, El Sardinero, una calle…</span></li>
@@ -1150,9 +1210,10 @@ try{if(localStorage.getItem('rabuca-intro-v1'))d.classList.add('intro-back');}ca
    <button class="btn-loc" id="loc" title="Calcula el sufrimiento donde estás"><span class="s">📍</span><span class="t">📍 ¿Dónde estoy?</span></button>
   </div>
   <div class="chips" id="chips"></div>
-  <div class="minileg m" aria-hidden="true"><span>😇</span><i></i><span>💀</span><small>ISA estimado · toca el mapa</small></div>
+  <div class="tb-q"><div class="minileg m" aria-hidden="true"><span>😇</span><i></i><span>💀</span><small>ISA estimado · toca el mapa</small></div><button class="btn-queja" id="qBtn" type="button">😤 Me quejo aquí</button></div>
  </div>
  <div class="verdict" id="verdict"></div>
+ <div class="q-bar" id="qBar" hidden role="status"><b>😤 Toca el mapa donde no has podido aparcar</b><div class="q-bar-b"><button type="button" class="btn" id="qHere">📍 Estoy aquí</button><button type="button" class="btn" id="qCancelPick">Cancelar</button></div></div>
  <div class="mbar"><button class="mb-loc" id="loc2">📍 ¿Dónde estoy?</button><button class="mb-more" id="more" aria-controls="panel">🏆 Ranking</button></div>
 </section>
 <div class="scrim" id="scrim"></div>
@@ -1163,6 +1224,21 @@ try{if(localStorage.getItem('rabuca-intro-v1'))d.classList.add('intro-back');}ca
   <div class="tabs"><button class="tab on" data-t="cry">😭 Top 5 para llorar</button><button class="tab" data-t="zen">😌 Top 5 remansos</button></div>
   <ol class="rank" id="rank"></ol>
   <small class="note">Zonas distintas, separadas al menos 450 m. El nombre es la referencia más cercana y la calle con más señalización municipal de la celda: orientativo. Recalcula si cambias el modelo o activas el modo verano.</small>
+ </div>
+
+ <div class="card q-card" id="quejas">
+  <h2>😤 Quejas ciudadanas</h2>
+  <div class="q-count"><b id="qCount">…</b> <span id="qCountTxt">quejas registradas</span><small> · <b id="qWeek">0</b> en los últimos 7 días</small></div>
+  <div class="q-bys" id="qBy"></div>
+  <button class="btn pri q-panel-btn" id="qPanelBtn" type="button">😤 Me quejo aquí</button>
+  <details class="q-open">
+   <summary>📂 Datos abiertos de las quejas</summary>
+   <p>Todas las quejas son anónimas y se publican como <b>datos abiertos (CC BY 4.0)</b>, en vivo. Úsalas para lo que quieras: prensa, asociaciones de vecinos, investigación… y, ojalá, el Ayuntamiento para decidir dónde hace falta mejorar el aparcamiento.</p>
+   <div class="share-row"><button class="btn" id="qCsv" type="button">⬇️ CSV</button><button class="btn" id="qGeo" type="button">⬇️ GeoJSON</button></div>
+   <small class="note">API pública (PostgREST, solo lectura e inserción):</small>
+   <pre class="formula q-api" id="qApi"></pre>
+   <small class="note">Campos: id, created_at (UTC), lat, lng, motivo (sin_sitio, zona_azul, carga_descarga, parking_lleno, mal_aparcados, otro), comentario (≤280), zona. Sin nombres, correos ni IPs.</small>
+  </details>
  </div>
 
  <div class="card li-card"><p>👋 Rabapark es un proyecto personal de <b>Carlos Pérez del Molino</b>. ¿Ideas, fallos o sugerencias?</p><a class="li-link lt" href="https://www.linkedin.com/in/carlosperezdelmolino/" target="_blank" rel="noopener" aria-label="Hablamos en LinkedIn con Carlos Pérez del Molino (se abre en una pestaña nueva)"><svg class="li-ic" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.064 2.064 0 1 1 0-4.128 2.064 2.064 0 0 1 0 4.128zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span>Hablamos en LinkedIn</span></a></div>
@@ -1196,6 +1272,7 @@ try{if(localStorage.getItem('rabuca-intro-v1'))d.classList.add('intro-back');}ca
   <label class="tg"><input type="checkbox" id="L_pl" checked><span class="sw" style="background:#f2c14e"></span><span>Playas – atractores (<span id="n_pl"></span>)</span></label>
   <label class="tg"><input type="checkbox" id="L_moto"><span class="sw" style="background:#7b3fb5;border-radius:50%"></span><span>Plazas de motos (<span id="n_moto"></span> señales)</span></label>
   <label class="tg"><input type="checkbox" id="L_pmr"><span class="sw" style="background:#12924a;border-radius:50%"></span><span>Plazas PMR (<span id="n_pmr"></span> señales)</span></label>
+  <label class="tg"><input type="checkbox" id="L_quejas" checked><span class="sw" style="background:#e63946;border-radius:50%"></span><span>😤 Quejas ciudadanas (<span id="n_quejas">0</span>)</span></label>
   <label class="tg"><input type="checkbox" id="L_vado"><span class="sw" style="background:#666;border-radius:50%"></span><span>Vados (<span id="n_vado"></span>)</span></label>
  </div>
 
@@ -1277,6 +1354,30 @@ try{if(localStorage.getItem('rabuca-intro-v1'))d.classList.add('intro-back');}ca
   </div>
   <small class="note" id="shNote">En LinkedIn pega el texto copiado en tu publicación.</small>
   <div class="share-row"><button class="btn" id="mClose">Cerrar</button></div>
+ </div>
+</div>
+<div class="modal q-modal" id="qModal" role="dialog" aria-modal="true" aria-labelledby="qT">
+ <div class="box">
+  <div id="qForm">
+   <h3 id="qT"><span class="raba" aria-hidden="true"></span>Cuéntale a Rabuca qué ha pasado</h3>
+   <p class="q-where" id="qWhere"></p>
+   <p class="q-lbl">¿Qué te ha pasado?</p>
+   <div class="q-mots" id="qMots" role="group" aria-label="Motivo de la queja"></div>
+   <label class="q-lbl" for="qTxt">Comentario (opcional)</label>
+   <textarea id="qTxt" maxlength="280" rows="3" placeholder="Ej.: tres vueltas y al final al parking. Sin enlaces, por favor."></textarea>
+   <div class="q-cnt" id="qCnt" aria-live="polite">0/280</div>
+   <p class="q-priv">🔒 <b>Anónima.</b> No guardamos nombre, correo ni IP. Se publica como datos abiertos (CC BY 4.0): no pongas datos personales ni matrículas.</p>
+   <details class="q-why"><summary>Cómo quejarte y para qué sirve</summary><p>Marca dónde no has podido aparcar, elige el motivo y envía. Cada queja se suma a un mapa público que cualquiera puede descargar (CSV/GeoJSON): vecinos, prensa o el propio Ayuntamiento. Muchas quejas juntas en el mismo sitio dicen más que mil vueltas a la manzana.</p></details>
+   <p class="q-err" id="qErr" role="alert"></p>
+   <div class="share-row"><button class="btn pri" id="qSend" type="button" disabled>Enviar queja 😤</button><button class="btn" id="qCancel" type="button">Cancelar</button></div>
+  </div>
+  <div id="qDone" hidden class="q-done">
+   <span class="raba" aria-hidden="true"></span>
+   <h3>¡Queja registrada!</h3>
+   <p>El Ayuntamiento no lo sabe aún, pero lo va a saber. 🦑</p>
+   <small class="note">Ya está en el mapa (capa «Quejas ciudadanas») y en los datos abiertos.</small>
+   <div class="share-row"><button class="btn pri" id="qOk" type="button">Volver al mapa</button></div>
+  </div>
  </div>
 </div>
 <div id="toast" role="status" aria-live="polite"></div>
@@ -1471,7 +1572,7 @@ function verdict(lat,lon,label,silent,me){
 }
 V.addEventListener('click',e=>{if(e.target.closest('.v-close')){V.classList.add('hide');}});
 function goTo(lat,lon,label,z,me){const zz=Math.max(map.getZoom(),z||16);verdict(lat,lon,label,false,me);map.flyTo(offC(lat,lon,zz),zz,{duration:.9});}
-map.on('click',e=>{verdict(e.latlng.lat,e.latlng.lng,null);$('sugg').classList.remove('on');
+map.on('click',e=>{if(window.QPICK)return;verdict(e.latlng.lat,e.latlng.lng,null);$('sugg').classList.remove('on');
  if(mob){const vt=V.getBoundingClientRect().top-map.getContainer().getBoundingClientRect().top;if(e.containerPoint.y>vt-24)map.panTo(offC(e.latlng.lat,e.latlng.lng,map.getZoom()));}});
 
 /* ===== Bottom sheet (móvil) ===== */
@@ -1593,6 +1694,107 @@ document.querySelectorAll('[data-n]').forEach(el=>{const to=NUM[el.dataset.n],t0
 /* enlace compartido: #@lat,lon~etiqueta */
 const hm=location.hash.match(/^#@(-?\d+\.\d+),(-?\d+\.\d+)(?:~(.*))?$/);
 if(hm){const la=+hm[1],lo=+hm[2];let lb=null;try{lb=hm[3]?decodeURIComponent(hm[3]):null;}catch(e){}verdict(la,lo,lb);map.setView(offC(la,lo,16),16);}else showIntro();
+</script>
+<script>
+/* ===== Quejas ciudadanas (Supabase · datos abiertos CC BY 4.0) =====
+   La clave "publishable" es pública por diseño: solo permite lo que dejan las políticas RLS
+   (leer e insertar quejas anónimas; nada de editar ni borrar). */
+(()=>{
+ const SB='https://axydjqbwnrrvhtksceco.supabase.co/rest/v1',KEY='sb_publishable_DgQxCjK25RV6KHlLp7PsYQ_w_Qazrue';
+ const HDR={apikey:KEY};
+ const COLS='id,created_at,lat,lng,motivo,comentario,zona';
+ const BBOX={s:43.40,n:43.52,w:-3.92,e:-3.72};
+ const MOT={sin_sitio:{em:'🔄',t:'No hay sitio',c:'#e63946'},zona_azul:{em:'🔵',t:'Todo es zona azul',c:'#1d70d6'},carga_descarga:{em:'🚚',t:'Carga y descarga',c:'#8e44ad'},
+  parking_lleno:{em:'🅿️',t:'Parking lleno',c:'#f39c12'},mal_aparcados:{em:'🚫',t:'Coches mal aparcados',c:'#2a9d8f'},otro:{em:'🤷',t:'Otro',c:'#6c757d'}};
+ const WAIT=60000,LSK='rabapark-queja-ultima';
+ const rtf=new Intl.RelativeTimeFormat('es',{numeric:'auto'});
+ function rel(d){const s=(new Date(d)-Date.now())/1000,a=Math.abs(s);
+  if(a<60)return 'hace un momento';if(a<3600)return rtf.format(Math.round(s/60),'minute');if(a<86400)return rtf.format(Math.round(s/3600),'hour');
+  if(a<2592000)return rtf.format(Math.round(s/86400),'day');if(a<31536000)return rtf.format(Math.round(s/2592000),'month');return rtf.format(Math.round(s/31536000),'year');}
+ const qR=L.canvas({padding:.3});
+ const qL=L.layerGroup();let ROWS=[];
+ function popup(r){const m=MOT[r.motivo]||MOT.otro;
+  return `<b>${m.em} ${esc(m.t)}</b>${r.comentario?`<br><span class="q-com">«${esc(r.comentario)}»</span>`:''}<br><small>${esc(rel(r.created_at))}${r.zona?' · '+esc(r.zona):''}</small><br><small class="q-pop-note">Queja ciudadana anónima · datos abiertos CC BY 4.0</small>`;}
+ function addRow(r){const m=MOT[r.motivo]||MOT.otro;
+  L.circleMarker([r.lat,r.lng],{renderer:qR,radius:mob?8:7,color:'#fff',weight:2,fillColor:m.c,fillOpacity:.92,bubblingMouseEvents:false}).bindPopup(popup(r)).addTo(qL);}
+ function render(){qL.clearLayers();ROWS.forEach(addRow);}
+ async function getAll(){let out=[],off=0;for(;;){const r=await fetch(`${SB}/quejas?select=${COLS}&order=id.asc&limit=1000&offset=${off}`,{headers:HDR});if(!r.ok)throw new Error('HTTP '+r.status);
+   const j=await r.json();out=out.concat(j);if(j.length<1000)break;off+=1000;}return out;}
+ function counters(){const n=ROWS.length,wk=ROWS.filter(r=>Date.now()-new Date(r.created_at)<7*864e5).length;
+  $('qCount').textContent=fmt(n);$('qCountTxt').textContent=n===1?'queja registrada':'quejas registradas';$('qWeek').textContent=fmt(wk);
+  $('n_quejas').textContent=fmt(n);
+  const by={};ROWS.forEach(r=>by[r.motivo]=(by[r.motivo]||0)+1);
+  $('qBy').innerHTML=n?Object.keys(MOT).filter(k=>by[k]).sort((a,b)=>by[b]-by[a]).map(k=>`<span class="q-by" style="--c:${MOT[k].c}">${MOT[k].em} ${esc(MOT[k].t)} <b>${fmt(by[k])}</b></span>`).join(''):'<span class="q-empty">Aún no hay quejas. La primera puede ser la tuya. 😤</span>';}
+ async function load(){try{ROWS=await getAll();render();counters();}catch(e){$('qCount').textContent='–';$('qCountTxt').textContent='quejas (no se han podido cargar ahora mismo)';}}
+ /* capa */
+ const cb=$('L_quejas');if(cb.checked)qL.addTo(map);cb.addEventListener('change',()=>cb.checked?qL.addTo(map):map.removeLayer(qL));
+ /* ---- flujo de queja ---- */
+ let picking=false,pt=null,ptMk=null,mot=null;
+ const PICK_ICON=L.divIcon({className:'',html:'<div class="q-pin">😤</div>',iconSize:[40,46],iconAnchor:[20,44]});
+ function inBox(la,lo){return la>=BBOX.s&&la<=BBOX.n&&lo>=BBOX.w&&lo<=BBOX.e;}
+ function wait(){let t=0;try{t=+localStorage.getItem(LSK)||0;}catch(e){}t=Math.max(t,wait.mem||0);return Math.max(0,WAIT-(Date.now()-t));}
+ function startPick(){
+  const w=wait();if(w>0){toast(`Rabuca toma nota, pero de una en una: espera ${Math.ceil(w/1000)} s para la siguiente queja 🦑`,4000);return;}
+  closeSheet();V.classList.add('hide');picking=true;window.QPICK=true;document.body.classList.add('q-picking');$('qBar').hidden=false;
+ }
+ function stopPick(){picking=false;window.QPICK=false;document.body.classList.remove('q-picking');$('qBar').hidden=true;}
+ function choosePoint(la,lo,mine){
+  if(!inBox(la,lo)){toast(mine?'Parece que no estás en Santander. Toca el mapa donde no has podido aparcar 👆':'Eso se sale de Santander 😅. Toca dentro del municipio.',4000);return;}
+  stopPick();pt={lat:+la.toFixed(5),lng:+lo.toFixed(5)};
+  if(ptMk)ptMk.setLatLng([la,lo]);else ptMk=L.marker([la,lo],{icon:PICK_ICON,interactive:false,zIndexOffset:3000}).addTo(map);
+  const z=(refNear(la,lo)||streetNear(la,lo)||'').slice(0,80);pt.zona=z||null;
+  $('qWhere').textContent='📍 '+(mine?'Tu ubicación':(z||'Punto marcado en el mapa'));openForm();
+ }
+ map.on('click',e=>{if(picking)choosePoint(e.latlng.lat,e.latlng.lng,false);});
+ function openForm(){mot=null;$('qForm').hidden=false;$('qDone').hidden=true;$('qErr').textContent='';$('qTxt').value='';cnt();
+  document.querySelectorAll('.q-mot').forEach(b=>b.setAttribute('aria-pressed','false'));$('qSend').disabled=true;$('qModal').classList.add('on');
+  setTimeout(()=>document.querySelector('.q-mot').focus({preventScroll:true}),60);}
+ function closeForm(){$('qModal').classList.remove('on');if(ptMk){map.removeLayer(ptMk);ptMk=null;}}
+ function cnt(){const n=$('qTxt').value.length;$('qCnt').textContent=`${n}/280`;$('qCnt').classList.toggle('lim',n>260);}
+ $('qMots').innerHTML=Object.entries(MOT).map(([k,m])=>`<button type="button" class="q-mot" data-k="${k}" aria-pressed="false" style="--c:${m.c}"><span>${m.em}</span>${esc(m.t)}</button>`).join('');
+ $('qMots').addEventListener('click',e=>{const b=e.target.closest('.q-mot');if(!b)return;mot=b.dataset.k;document.querySelectorAll('.q-mot').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));$('qSend').disabled=false;$('qErr').textContent='';});
+ $('qTxt').addEventListener('input',cnt);
+ const ERR={'Sin enlaces':'Sin enlaces en el comentario, por favor. Rabuca no hace publicidad 🦑','Demasiadas':'Hay mucha gente quejándose a la vez. Prueba en un minuto 🙏','ya esta registrada':'Esa queja ya está apuntada. ¡Gracias!'};
+ $('qSend').onclick=async()=>{
+  if(!pt||!mot){$('qErr').textContent='Elige un motivo 👆';return;}
+  const w=wait();if(w>0){$('qErr').textContent=`Espera ${Math.ceil(w/1000)} s para la siguiente queja.`;return;}
+  const com=$('qTxt').value.trim();
+  if(/(https?:\/\/|www\.)/i.test(com)){$('qErr').textContent=ERR['Sin enlaces'];return;}
+  $('qSend').disabled=true;$('qSend').textContent='Enviando…';
+  try{
+   const r=await fetch(`${SB}/quejas?select=${COLS}`,{method:'POST',headers:{...HDR,'Content-Type':'application/json',Prefer:'return=representation'},
+    body:JSON.stringify({lat:pt.lat,lng:pt.lng,motivo:mot,comentario:com||null,zona:pt.zona})});
+   const j=await r.json().catch(()=>null);
+   if(!r.ok){const msg=(j&&j.message)||'';const k=Object.keys(ERR).find(k=>msg.includes(k));throw new Error(k?ERR[k]:'No se ha podido enviar la queja. Prueba otra vez en un rato.');}
+   const row=Array.isArray(j)?j[0]:j;wait.mem=Date.now();try{localStorage.setItem(LSK,String(Date.now()));}catch(e){}
+   if(row){ROWS.push(row);addRow(row);counters();}
+   if(!cb.checked){cb.checked=true;qL.addTo(map);}
+   if(ptMk){map.removeLayer(ptMk);ptMk=null;}
+   $('qForm').hidden=true;$('qDone').hidden=false;setTimeout(()=>$('qOk').focus({preventScroll:true}),50);
+  }catch(e){$('qErr').textContent=e.message;}
+  finally{$('qSend').textContent='Enviar queja 😤';$('qSend').disabled=!mot;}
+ };
+ $('qBtn').onclick=startPick;$('qCancelPick').onclick=stopPick;
+ $('qHere').onclick=()=>{if(!navigator.geolocation){toast('Tu navegador no comparte ubicación. Toca el mapa 👆');return;}
+  toast('Buscándote… 🛰️',8000);navigator.geolocation.getCurrentPosition(p=>{$('toast').classList.remove('on');choosePoint(p.coords.latitude,p.coords.longitude,true);},
+   ()=>toast('Sin ubicación, ningún drama: toca el mapa donde no has podido aparcar 👆',4500),{enableHighAccuracy:true,timeout:10000,maximumAge:60000});};
+ $('qCancel').onclick=closeForm;$('qOk').onclick=closeForm;
+ $('qModal').addEventListener('click',e=>{if(e.target.id==='qModal')closeForm();});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('qModal').classList.contains('on'))closeForm();else if(picking)stopPick();}});
+ /* ---- descargas (en vivo desde la API) ---- */
+ function dl(name,type,data){const u=URL.createObjectURL(new Blob([data],{type}));const a=document.createElement('a');a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),2000);}
+ const stamp=()=>new Date().toISOString().slice(0,10);
+ $('qCsv').onclick=async()=>{try{const r=await fetch(`${SB}/quejas?select=${COLS}&order=id.asc`,{headers:{...HDR,Accept:'text/csv'}});if(!r.ok)throw 0;dl(`rabapark-quejas-${stamp()}.csv`,'text/csv;charset=utf-8','\ufeff'+await r.text());}
+  catch(e){toast('No se ha podido descargar ahora mismo. Prueba en un rato 🙏');}};
+ $('qGeo').onclick=async()=>{try{const rows=await getAll();
+  const fc={type:'FeatureCollection',name:'rabapark_quejas',license:'CC BY 4.0',attribution:'Rabapark · quejas ciudadanas anónimas (rabapark.github.io)',generated:new Date().toISOString(),
+   features:rows.map(r=>({type:'Feature',geometry:{type:'Point',coordinates:[r.lng,r.lat]},properties:{id:r.id,created_at:r.created_at,motivo:r.motivo,comentario:r.comentario,zona:r.zona}}))};
+  dl(`rabapark-quejas-${stamp()}.geojson`,'application/geo+json',JSON.stringify(fc,null,1));}catch(e){toast('No se ha podido descargar ahora mismo. Prueba en un rato 🙏');}};
+ $('qApi').textContent=`GET ${SB}/quejas?select=*\napikey: ${KEY}`;
+ $('qPanelBtn').onclick=()=>{closeSheet();startPick();};
+ window.rabaparkQuejas={reload:load,rows:()=>ROWS};
+ load();
+})();
 </script>
 <script>
 /* ===== Intro de Rabuca ===== */
