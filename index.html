@@ -1124,6 +1124,58 @@ body.q-picking .toolbar,body.q-picking .verdict,body.q-picking .mbar{visibility:
 /* La intro sale SIEMPRE, salvo enlaces directos al mapa (?mapa, #mapa) o a un punto compartido (#@lat,lon) */
 if(/[?&]mapa(=|&|$)/.test(q)||/^#(@|mapa)/.test(h))d.classList.add('no-intro');else d.classList.add('intro-on');
 try{if(localStorage.getItem('rabuca-intro-v1'))d.classList.add('intro-back');}catch(e){}})();</script>
+<style id="incentivos-css">
+/* ===== Incentivos: liga de quejas, medallas y tarjeta ===== */
+.lg-list{list-style:none;margin:0;padding:0}
+.lg-row{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:12px;background:#fff7ef;border:1px solid #ffdcc2;margin-bottom:6px;cursor:pointer;text-align:left;width:100%;font:inherit;color:inherit}
+.lg-row:hover{background:#fff0e2}
+.lg-row .md{font-size:26px;flex:none;width:32px;text-align:center}
+.lg-row .nm{flex:1;min-width:0;font-size:.88rem;line-height:1.25}
+.lg-row .nm b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lg-row .nm small{display:block;color:#b4531b;font-size:.74rem;font-weight:700}
+.lg-row .n{flex:none;font-weight:900;font-size:.82rem;background:#e63946;color:#fff;border-radius:999px;padding:3px 9px;white-space:nowrap}
+.lg-row.free{background:#f6f7fa;border:1px dashed #cdd5df;cursor:default}
+.lg-row.free .md{filter:grayscale(1);opacity:.4}
+.lg-row.free .nm b{color:var(--mut);white-space:normal}
+.lg-row.free .nm small{color:var(--mut);font-weight:500}
+.lg-rest{list-style:none;margin:4px 0 0;padding:0}
+.lg-rest li{display:flex;gap:8px;align-items:center;padding:6px 8px;font-size:.84rem;border-radius:8px;cursor:pointer}
+.lg-rest li:hover{background:#f4f6fa}
+.lg-rest .p{width:26px;font-weight:900;color:var(--mut);text-align:center}
+.lg-rest .z{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lg-rest .c{font-weight:800;color:#b3261e;white-space:nowrap}
+.lg-msg{font-size:.85rem;color:var(--mut);line-height:1.45;margin:6px 0}
+.lg-btn{width:100%;margin-top:8px}
+.q-liga{font-size:.92rem!important;background:#fff7ef;border:1px solid #ffdcc2;border-radius:12px;padding:8px 10px;margin:8px 0!important}
+.q-liga:empty{display:none}
+.med-head{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+.med-head small{color:var(--mut);font-size:.78rem;white-space:nowrap}
+.med-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));gap:8px;margin-top:6px}
+.med{border:1px solid var(--line);border-radius:12px;padding:9px 6px;text-align:center;font-size:.78rem;line-height:1.25;background:#fff}
+.med .e{font-size:30px;display:block;margin-bottom:3px}
+.med b{display:block;font-size:.8rem}
+.med small{display:block;color:var(--mut);margin-top:2px;font-size:.72rem}
+.med.on{background:linear-gradient(160deg,#fff8e8,#ffe9d6);border-color:#ffc89e}
+.med.off .e{filter:grayscale(1);opacity:.3}
+.med.off b{color:var(--mut)}
+#medal{position:fixed;left:50%;top:calc(12px + env(safe-area-inset-top));transform:translate(-50%,-160%);z-index:3100;display:flex;align-items:center;gap:12px;
+ background:linear-gradient(135deg,#ffd27a,#ff8a4c);color:#2a1300;border-radius:18px;padding:10px 16px 10px 12px;box-shadow:0 14px 40px #0f2a4766;
+ width:max-content;max-width:min(440px,92vw);transition:transform .45s cubic-bezier(.2,1.4,.4,1),opacity .3s;opacity:0;cursor:pointer}
+#medal.on{transform:translate(-50%,0);opacity:1}
+#medal .e{font-size:44px;line-height:1;flex:none}
+#medal.on .e{animation:medpop .7s ease-out}
+#medal .t{font-size:.86rem;line-height:1.3}
+#medal .t small{display:block;text-transform:uppercase;letter-spacing:.06em;font-size:.68rem;font-weight:800;opacity:.75}
+#medal .t b{display:block;font-size:1.02rem}
+@keyframes medpop{0%{transform:scale(.3) rotate(-30deg)}60%{transform:scale(1.25) rotate(8deg)}100%{transform:scale(1) rotate(0)}}
+@media (prefers-reduced-motion:reduce){#medal{transition:opacity .2s}#medal.on .e{animation:none}}
+.card-prev{display:block;width:100%;max-height:min(58vh,560px);object-fit:contain;border-radius:12px;background:#0f2a47;margin:4px 0 2px}
+.card-modal .box{max-width:440px}
+.card-modal .share-row .btn{min-width:100px}
+.v-actions .btn.vcard{flex:none;white-space:nowrap}
+@media (max-width:860px){.card-prev{max-height:50vh}.lg-row{padding:11px 10px}}
+@media (max-width:380px){.v-actions .btn.vcard .t{display:none}}
+</style>
 </head>
 <body>
 <div id="intro" role="dialog" aria-modal="true" aria-label="Rabuca te explica el mapa" data-s="0">
@@ -1250,6 +1302,13 @@ try{if(localStorage.getItem('rabuca-intro-v1'))d.classList.add('intro-back');}ca
   <small class="note">Zonas distintas, separadas al menos 450 m. El nombre es la referencia más cercana y la calle con más señalización municipal de la celda: orientativo. Recalcula si cambias el modelo o activas el modo verano.</small>
  </div>
 
+ <div class="card lg-card" id="liga">
+  <h2>🏆 Liga del sufrimiento</h2>
+  <p class="lg-msg" style="margin-top:0">Las zonas con más quejas ciudadanas. Aquí no hay estimaciones: cuenta lo que habéis sufrido de verdad.</p>
+  <div id="ligaBody"><p class="lg-msg">Rabuca está contando quejas…</p></div>
+  <button class="btn pri lg-btn" id="ligaBtn" type="button">😤 Meter a mi barrio en la liga</button>
+ </div>
+
  <div class="card q-card" id="quejas">
   <h2>😤 Quejas ciudadanas</h2>
   <div class="q-count"><b id="qCount">…</b> <span id="qCountTxt">quejas registradas</span><small> · <b id="qWeek">0</b> en los últimos 7 días</small></div>
@@ -1263,6 +1322,12 @@ try{if(localStorage.getItem('rabuca-intro-v1'))d.classList.add('intro-back');}ca
    <pre class="formula q-api" id="qApi"></pre>
    <small class="note">Campos: id, created_at (UTC), lat, lng, motivo (sin_sitio, zona_azul, carga_descarga, parking_lleno, mal_aparcados, otro), comentario (≤280), zona. Sin nombres, correos ni IPs.</small>
   </details>
+ </div>
+
+ <div class="card med-card" id="medallas">
+  <div class="med-head"><h2>🏅 Tus medallas de Rabuca</h2><small id="medCount"></small></div>
+  <div class="med-grid" id="medGrid"></div>
+  <small class="note">Se guardan solo en este navegador: sin cuentas, sin nombres y sin nada que viaje a ningún sitio. Si borras los datos del navegador, Rabuca se olvida.</small>
  </div>
 
  <div class="card li-card"><p>👋 Rabapark es un proyecto personal de <b>Carlos Pérez del Molino</b>. ¿Ideas, fallos o sugerencias?</p><a class="li-link lt" href="https://www.linkedin.com/in/carlosperezdelmolino/" target="_blank" rel="noopener" aria-label="Hablamos en LinkedIn con Carlos Pérez del Molino (se abre en una pestaña nueva)"><svg class="li-ic" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.064 2.064 0 1 1 0-4.128 2.064 2.064 0 0 1 0 4.128zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span>Hablamos en LinkedIn</span></a></div>
@@ -1400,11 +1465,26 @@ try{if(localStorage.getItem('rabuca-intro-v1'))d.classList.add('intro-back');}ca
    <span class="raba" aria-hidden="true"></span>
    <h3>¡Queja registrada!</h3>
    <p>El Ayuntamiento no lo sabe aún, pero lo va a saber. 🦑</p>
+   <p class="q-liga" id="qLiga"></p>
    <small class="note">Ya está en el mapa (capa «Quejas ciudadanas») y en los datos abiertos.</small>
-   <div class="share-row"><button class="btn pri" id="qOk" type="button">Volver al mapa</button></div>
+   <div class="share-row"><button class="btn pri" id="qCard" type="button">🖼️ Presume de queja</button><button class="btn" id="qOk" type="button">Volver al mapa</button></div>
   </div>
  </div>
 </div>
+<div class="modal card-modal" id="cardModal" role="dialog" aria-modal="true" aria-labelledby="cardT">
+ <div class="box">
+  <h3 id="cardT"><span class="raba" aria-hidden="true"></span>Tu tarjeta de sufrimiento</h3>
+  <img class="card-prev" id="cardImg" alt="">
+  <div class="share-row">
+   <button class="btn pri" id="cardShare" type="button">📲 Compartir</button>
+   <button class="btn" id="cardDl" type="button">⬇️ Descargar</button>
+   <a class="btn" id="cardWa" target="_blank" rel="noopener">💬 WhatsApp</a>
+  </div>
+  <small class="note" id="cardNote"></small>
+  <div class="share-row"><button class="btn" id="cardClose" type="button">Cerrar</button></div>
+ </div>
+</div>
+<div id="medal" role="status" aria-live="polite"></div>
 <div id="toast" role="status" aria-live="polite"></div>
 
 <script>/* @preserve
@@ -1589,7 +1669,7 @@ function verdict(lat,lon,label,silent,me){
  <div class="meter"><i style="left:${Math.min(99.5,Math.max(.5,x.s))}%"></i></div>
  <p class="v-quip">«${esc(quip)}»</p>
  <div class="escape">🅿️ <b>Parking de escape:</b> ${esc_txt}${(()=>{const o=nearObras(lat,lon,np.d);return o?`<span class="obras-n">🚧 El ${esc(o.nombre.replace(/^Parking /,''))} ${OBRAS_ESC}</span>`:'';})()}<br><small style="color:var(--mut)">Sin datos de ocupación: puede estar lleno.</small></div>
- <div class="v-actions"><button class="btn pri" id="vShare">📣 Compartir mi sufrimiento</button><button class="btn" id="vPk" title="Ver el parking en el mapa" aria-label="Ver parking de escape">🅿️</button></div>
+ <div class="v-actions"><button class="btn pri" id="vShare">📣 Compartir mi sufrimiento</button><button class="btn vcard" id="vCard" title="Crear una tarjeta para compartir" aria-label="Crear tarjeta para compartir">🖼️<span class="t"> Tarjeta</span></button><button class="btn" id="vPk" title="Ver el parking en el mapa" aria-label="Ver parking de escape">🅿️</button></div>
  ${(x.k.B>=.5&&!$('summer').checked)?'<button class="hint" id="vSum">☀️ ¿Y en pleno agosto? Activa el modo verano →</button>':''}
  <details class="v-break"><summary>¿Por qué este número?</summary><table>
  <tr><td>🔵 Zona azul (O) · cobertura 250 m ${pct(c.cov)}, a ${c.dO} m</td><td>${pct(x.k.O)}</td></tr>
@@ -1601,6 +1681,7 @@ function verdict(lat,lon,label,silent,me){
  <div class="v-disc">⚠️ Presión <b>estimada y estructural</b> para la celda de 150 m, no plazas libres en tiempo real.</div>`;
  V.classList.remove('hide');
  $('vShare').onclick=()=>share(true);
+ $('vCard').onclick=()=>window.rabaCard&&rabaCard.open({lat,lon,where:me?(refNear(lat,lon)||streetNear(lat,lon)||'Santander'):where,quip});
  if($('vSum'))$('vSum').onclick=()=>{$('summer').checked=true;recolor();toast('☀️ Modo verano: las playas pesan el doble. Suerte.');};
  $('vPk').onclick=()=>{map.flyTo([np.p.lat,np.p.lon],17,{duration:.8});pkMk[D.parkings.indexOf(np.p)].openPopup();};
 }
@@ -1862,6 +1943,124 @@ const hm=location.hash.match(/^#@(-?\d+\.\d+),(-?\d+\.\d+)(?:~(.*))?$/);
 if(hm){const la=+hm[1],lo=+hm[2];let lb=null;try{lb=hm[3]?decodeURIComponent(hm[3]):null;}catch(e){}verdict(la,lo,lb);map.setView(offC(la,lo,16),16);}else showIntro();
 </script>
 <script>
+/* ===== Medallas de Rabuca (solo en este navegador: localStorage, sin cuentas ni datos personales) ===== */
+(()=>{
+ const KEY='rabapark-medallas-v1';
+ const M=[
+  {id:'bronce',e:'🥉',n:'Calamar de bronce',h:'Tu primera queja',t:'Primera queja enviada. Ya eres del club de las vueltas a la manzana.',ok:s=>s.q>=1},
+  {id:'plata',e:'🥈',n:'Calamar de plata',h:'3 quejas',t:'Tres quejas. Esto ya no es un mal día, es un patrón.',ok:s=>s.q>=3},
+  {id:'oro',e:'🥇',n:'Calamar de oro',h:'10 quejas',t:'Diez quejas. Rabuca te haría un monumento, pero no encuentra dónde aparcarlo.',ok:s=>s.q>=10},
+  {id:'pionero',e:'🚩',n:'Pionero del bordillo',h:'La primera queja de una zona',t:'Nadie se había quejado aquí antes. Has abierto la veda.',ok:(s,x)=>!!(x&&x.pionero)},
+  {id:'trota',e:'🗺️',n:'Trotamanzanas',h:'Quejas en 3 zonas distintas',t:'Tres zonas distintas. Tú no buscas aparcamiento, haces turismo.',ok:s=>s.z.length>=3},
+  {id:'drama',e:'🎭',n:'Coleccionista de desgracias',h:'3 motivos de queja distintos',t:'Tres motivos distintos. Lo tuyo con el coche ya es un drama en varios actos.',ok:s=>s.m.length>=3},
+  {id:'pregon',e:'📣',n:'Pregonero de Rabuca',h:'Comparte tu tarjeta',t:'Tarjeta fuera. Que se entere todo el grupo de WhatsApp.',ok:s=>s.sh>=1}
+ ];
+ const blank=()=>({q:0,z:[],m:[],sh:0,got:{}});
+ function get(){try{const o=JSON.parse(localStorage.getItem(KEY)||'null');if(o&&typeof o==='object'){const b=blank();
+   return {q:+o.q||0,z:Array.isArray(o.z)?o.z.slice(0,50):b.z,m:Array.isArray(o.m)?o.m.slice(0,10):b.m,sh:+o.sh||0,got:o.got&&typeof o.got==='object'?o.got:b.got};}}catch(e){}return blank();}
+ let MEM=null;/* si el navegador no deja guardar (modo privado estricto), al menos dura la visita */
+ function load(){const s=get();return MEM&&MEM.q+MEM.sh>s.q+s.sh?MEM:s;}
+ function save(s){MEM=s;try{localStorage.setItem(KEY,JSON.stringify(s));}catch(e){}}
+ function check(s,x){const nu=[];M.forEach(m=>{if(!s.got[m.id]&&m.ok(s,x)){s.got[m.id]=1;nu.push(m);}});return nu;}
+ function render(){const s=load(),n=M.filter(m=>s.got[m.id]).length;
+  $('medCount').textContent=`${n} de ${M.length}`;
+  $('medGrid').innerHTML=M.map(m=>{const on=!!s.got[m.id];return `<div class="med ${on?'on':'off'}" title="${esc(on?m.t:m.h)}"><span class="e" aria-hidden="true">${m.e}</span><b>${esc(m.n)}</b><small>${on?'¡Conseguida!':esc(m.h)}</small></div>`;}).join('');}
+ /* aviso de medalla nueva (en cola, una detrás de otra) */
+ const Q=[];let busy=false;const el=$('medal');
+ function next(){if(!Q.length){busy=false;return;}busy=true;const m=Q.shift();
+  el.innerHTML=`<span class="e" aria-hidden="true">${m.e}</span><span class="t"><small>Medalla nueva de Rabuca</small><b>${esc(m.n)}</b>${esc(m.t)}</span>`;
+  el.classList.remove('on');void el.offsetWidth;el.classList.add('on');
+  clearTimeout(next.t);next.t=setTimeout(hide,4600);}
+ function hide(){clearTimeout(next.t);el.classList.remove('on');setTimeout(next,450);}
+ el.addEventListener('click',hide);
+ function show(list){if(!list.length)return;Q.push(...list);if(!busy)next();}
+ function queja({zona,motivo,pionero}){const s=load();s.q++;
+  if(zona&&!s.z.includes(zona))s.z.push(zona);if(motivo&&!s.m.includes(motivo))s.m.push(motivo);
+  const nu=check(s,{pionero});save(s);render();show(nu);return nu.map(m=>m.id);}
+ function shared(){const s=load();s.sh++;const nu=check(s,{});save(s);render();show(nu);return nu.map(m=>m.id);}
+ window.rabaMedallas={queja,shared,count:()=>{const s=load();return M.filter(m=>s.got[m.id]).length;},list:()=>M.map(m=>({id:m.id,n:m.n,got:!!load().got[m.id]})),total:M.length};
+ render();
+})();
+
+/* ===== Tarjeta para compartir (canvas → PNG; Web Share con archivo y, si no, descarga) ===== */
+(()=>{
+ const W=1080,H=1350,URL_TXT='rabapark.github.io',URL_FULL='https://rabapark.github.io/';
+ const F='system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue","Noto Sans",sans-serif';
+ let IMG=null,BLOB=null,TXT='',NAME='rabapark.png',OBJ=null;
+ function raba(){if(IMG)return IMG;IMG=new Promise(res=>{const v=getComputedStyle(document.documentElement).getPropertyValue('--raba');const m=v.match(/url\(\s*["']?([^"')]+)["']?\s*\)/);
+  if(!m)return res(null);const i=new Image();i.onload=()=>res(i);i.onerror=()=>res(null);i.src=m[1];});return IMG;}
+ function rr(c,x,y,w,h,r){c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();}
+ function wrap(c,t,maxW,maxL){const ws=String(t).split(/\s+/);const L=[];let cur='';
+  for(const w of ws){const tt=cur?cur+' '+w:w;if(c.measureText(tt).width<=maxW||!cur)cur=tt;else{L.push(cur);cur=w;}}if(cur)L.push(cur);
+  if(L.length>maxL){L.length=maxL;let l=L[maxL-1];while(l.length>1&&c.measureText(l+'…').width>maxW)l=l.slice(0,-1);L[maxL-1]=l.replace(/[\s,.;:]+$/,'')+'…';}return L;}
+ function pill(c,x,y,txt,bg,fg,font,padX,h){c.font=font;const w=c.measureText(txt).width+padX*2;c.fillStyle=bg;rr(c,x,y,w,h,h/2);c.fill();c.fillStyle=fg;c.textBaseline='middle';c.fillText(txt,x+padX,y+h/2+2);c.textBaseline='alphabetic';return w;}
+ async function draw(o){
+  const cv=document.createElement('canvas');cv.width=W;cv.height=H;const c=cv.getContext('2d');
+  const g=c.createLinearGradient(0,0,0,H);g.addColorStop(0,'#0f2a47');g.addColorStop(1,'#1d4f80');c.fillStyle=g;c.fillRect(0,0,W,H);
+  c.fillStyle='#ffffff0d';[[980,120,190],[90,1250,240],[1010,1180,120]].forEach(([x,y,r])=>{c.beginPath();c.arc(x,y,r,0,7);c.fill();});
+  c.fillStyle='#ffb347';c.font=`800 34px ${F}`;c.fillText('🦑 RABAPARK · SANTANDER',70,100);
+  c.fillStyle='#fff';c.font=`700 46px ${F}`;c.fillText('Índice de Sufrimiento Aparcacionista',70,164);
+  const X=110,CW=860;let y=300;
+  /* tarjeta blanca: primero se maqueta, luego se pinta debajo */
+  const ops=[];const T=(font,col,txt,x,yy)=>ops.push(()=>{c.font=font;c.fillStyle=col;c.fillText(txt,x,yy);});
+  c.font=`800 58px ${F}`;const zl=wrap(c,'📍 '+o.where,CW,2);zl.forEach((t,i)=>T(`800 58px ${F}`,'#14202e',t,X,y+i*68));y+=(zl.length-1)*68;
+  if(o.queja){const t=`😤 Me he quejado aquí · ${o.queja.t}`;const yy=y+34;ops.push(()=>pill(c,X,yy,t,'#fde8e8','#b3261e',`700 32px ${F}`,22,58));y+=58+20;}
+  y+=40;
+  const l=o.l,sc=o.s;
+  const yS=y+170;
+  ops.push(()=>{c.font=`170px ${F}`;c.fillText(l?l.em:'🤷',X-6,yS-8);});
+  ops.push(()=>{c.fillStyle='#14202e';c.font=`900 200px ${F}`;const t=sc==null?'¿?':String(sc);c.fillText(t,X+215,yS);const w=c.measureText(t).width;
+   if(sc!=null){c.fillStyle='#5b6575';c.font=`700 60px ${F}`;c.fillText('/100',X+225+w,yS);}});
+  y=yS+34;
+  const yP=y;ops.push(()=>pill(c,X,yP,l?`${l.em} ${l.name}`:'Fuera de cobertura',l?l.col:'#e3e7ee',l?l.fg:'#5b6575',`800 40px ${F}`,26,66));
+  y+=66+40;
+  if(l){const yM=y;ops.push(()=>{const gg=c.createLinearGradient(X,0,X+CW,0);LV.forEach((v,i)=>gg.addColorStop(i/(LV.length-1),v.col));c.fillStyle=gg;rr(c,X,yM,CW,22,11);c.fill();
+    const mx=X+CW*Math.min(.995,Math.max(.005,o.raw/100));c.fillStyle='#14202e';c.beginPath();c.arc(mx,yM+11,19,0,7);c.fill();c.fillStyle='#fff';c.beginPath();c.arc(mx,yM+11,9,0,7);c.fill();});y+=22+70;}
+  c.font=`italic 500 38px ${F}`;const ql=wrap(c,`«${o.quip}»`,CW,3);ql.forEach((t,i)=>T(`italic 500 38px ${F}`,'#3a4656',t,X,y+i*50));y+=(ql.length-1)*50;
+  const nm=window.rabaMedallas?rabaMedallas.count():0;
+  if(nm){y+=70;T(`800 32px ${F}`,'#b4531b',`🏅 ${nm===1?'1 medalla':nm+' medallas'} de Rabuca`,X,y);}
+  const cardB=y+56;
+  c.save();c.shadowColor='#0008';c.shadowBlur=40;c.shadowOffsetY=14;c.fillStyle='#fff';rr(c,60,210,960,cardB-210,40);c.fill();c.restore();
+  ops.forEach(f=>f());
+  /* pie */
+  let fy=Math.max(cardB+90,1140);
+  c.fillStyle='#fff';c.font=`800 50px ${F}`;c.fillText('¿Y en tu barrio?',70,fy);
+  c.fillStyle='#ffb347';c.font=`900 64px ${F}`;c.fillText(URL_TXT,70,fy+74);
+  c.fillStyle='#c9d6e6';c.font=`500 26px ${F}`;c.fillText('ISA estimado con datos abiertos del Ayuntamiento.',70,fy+124);c.fillText('No son plazas libres en tiempo real.',70,fy+158);
+  const im=await raba();if(im){const h=270,w=h*im.width/im.height;c.save();c.translate(W-60-w/2,H-30-h/2);c.rotate(-.12);c.shadowColor='#0007';c.shadowBlur=24;c.shadowOffsetY=10;c.drawImage(im,-w/2,-h/2,w,h);c.restore();}
+  return cv;
+ }
+ const clean=w=>String(w||'').replace(/^[^\p{L}\d¿]+/u,'').replace(/^Tu ubicación.*$/,'').trim()||'Santander';
+ async function open(o){
+  const where=clean(o.where),cell=cellAt(o.lat,o.lon);let l=null,s=null,raw=0,quip;
+  if(cell){const x=score(cell,params());raw=x.s;s=Math.round(x.s);l=lvOf(x.s);quip=o.quip&&l.q.includes(o.quip)?o.quip:pick(l.q);}
+  else quip='Aquí no medimos el sufrimiento, pero eso no quiere decir que no exista.';
+  const cv=await draw({where,l,s,raw,quip,queja:o.queja});
+  BLOB=await new Promise(r=>cv.toBlob(r,'image/png'));
+  const slug=norm(where).replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,40)||'santander';NAME=`rabapark-${slug}.png`;
+  TXT=o.queja?(l?`Me he quejado de aparcar en ${where} 😤 Según Rabuca, ahí el sufrimiento es ${l.em} ${l.name} (${s}/100). ¿Y en tu barrio? ${URL_FULL}`:`Me he quejado de aparcar en ${where} 😤 ¿Y en tu barrio? ${URL_FULL}`):
+   (l?`Aparcar en ${where}: ${l.em} ${l.name} (${s}/100), palabra de Rabuca 🦑 ¿Y en tu barrio? ${URL_FULL}`:`Aparcar en ${where} es un misterio hasta para Rabuca 🦑 ¿Y en tu barrio? ${URL_FULL}`);
+  if(OBJ)URL.revokeObjectURL(OBJ);OBJ=URL.createObjectURL(BLOB);
+  $('cardImg').src=OBJ;$('cardImg').alt=`Tarjeta de Rabapark: ${where}${l?', '+l.name+' ('+s+'/100)':''}`;
+  const f=new File([BLOB],NAME,{type:'image/png'}),can=!!(navigator.canShare&&navigator.canShare({files:[f]}));
+  $('cardShare').hidden=!can;$('cardWa').href='https://wa.me/?text='+encodeURIComponent(TXT);
+  $('cardNote').textContent=can?'Se comparte la imagen con el enlace a la web. Tu ubicación exacta no va en ningún sitio.':'Tu navegador no comparte imágenes directamente: descárgala y súbela a WhatsApp o a tus redes. Tu ubicación exacta no va en ningún sitio.';
+  $('cardModal').classList.add('on');setTimeout(()=>(can?$('cardShare'):$('cardDl')).focus({preventScroll:true}),60);
+ }
+ const ok=()=>window.rabaMedallas&&rabaMedallas.shared();
+ $('cardShare').onclick=async()=>{if(!BLOB)return;const f=new File([BLOB],NAME,{type:'image/png'});
+  try{await navigator.share({files:[f],title:'Rabapark · Índice de Sufrimiento Aparcacionista',text:TXT});ok();}
+  catch(e){if(e&&e.name==='AbortError')return;toast('No se ha podido compartir. Descárgala y súbela tú 🙏',4000);}};
+ $('cardDl').onclick=()=>{if(!BLOB)return;const a=document.createElement('a');a.href=OBJ;a.download=NAME;document.body.appendChild(a);a.click();a.remove();toast('Tarjeta descargada. Ahora, a presumir 🦑');ok();};
+ $('cardWa').onclick=()=>{ok();};
+ const close=()=>$('cardModal').classList.remove('on');
+ $('cardClose').onclick=close;$('cardModal').addEventListener('click',e=>{if(e.target.id==='cardModal')close();});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('cardModal').classList.contains('on'))close();});
+ window.rabaCard={open,blob:()=>BLOB,text:()=>TXT,name:()=>NAME};
+})();
+
+</script>
+<script>
 /* ===== Quejas ciudadanas (Supabase · datos abiertos CC BY 4.0) =====
    La clave "publishable" es pública por diseño: solo permite lo que dejan las políticas RLS
    (leer e insertar quejas anónimas; nada de editar ni borrar). */
@@ -1891,11 +2090,39 @@ if(hm){const la=+hm[1],lo=+hm[2];let lb=null;try{lb=hm[3]?decodeURIComponent(hm[
   $('n_quejas').textContent=fmt(n);
   const by={};ROWS.forEach(r=>by[r.motivo]=(by[r.motivo]||0)+1);
   $('qBy').innerHTML=n?Object.keys(MOT).filter(k=>by[k]).sort((a,b)=>by[b]-by[a]).map(k=>`<span class="q-by" style="--c:${MOT[k].c}">${MOT[k].em} ${esc(MOT[k].t)} <b>${fmt(by[k])}</b></span>`).join(''):'<span class="q-empty">Aún no hay quejas. La primera puede ser la tuya. 😤</span>';}
- async function load(){try{ROWS=await getAll();render();counters();}catch(e){$('qCount').textContent='–';$('qCountTxt').textContent='quejas (no se han podido cargar ahora mismo)';}}
+ let LOADED=false;
+ /* ---- Liga del sufrimiento: quejas reales agrupadas por zona (la referencia guardada con cada queja) ---- */
+ const zKey=r=>{let z=String(r.zona||'').replace(/^cerca de /i,'').trim();if(!z&&r.lat!=null)z=(refNear(r.lat,r.lng)||'').replace(/^cerca de /,'')||streetNear(r.lat,r.lng)||'';return z||'Zona sin nombre';};
+ function liga(rows){const g={};rows.forEach(r=>{const k=zKey(r),o=g[k]||(g[k]={z:k,n:0,la:0,lo:0,last:0});o.n++;o.la+=r.lat;o.lo+=r.lng;o.last=Math.max(o.last,+new Date(r.created_at)||0);});
+  const L=Object.values(g).map(o=>({...o,la:o.la/o.n,lo:o.lo/o.n})).sort((a,b)=>b.n-a.n||b.last-a.last||a.z.localeCompare(b.z,'es'));
+  L.forEach(o=>o.pos=1+L.filter(x=>x.n>o.n).length);return L;}
+ const PODIO=[{m:'🥇',t:'Campeón del sufrimiento'},{m:'🥈',t:'Subcampeón del intermitente'},{m:'🥉',t:'Bronce en vueltas a la manzana'}];
+ const nq=n=>n===1?'1 queja':fmt(n)+' quejas';
+ let LIGA=[];
+ function renderLiga(err){const B=$('ligaBody');
+  if(err){B.innerHTML='<p class="lg-msg">Ahora mismo no puedo traer la clasificación. Prueba en un rato 🙏</p>';return;}
+  LIGA=liga(ROWS);
+  if(!LIGA.length){B.innerHTML='<p class="lg-msg">La liga está desierta. O en Santander se aparca de maravilla, o nadie ha encontrado aún el botón de quejarse. Tú decides cuál de las dos 😤</p>';return;}
+  let freeMsg=false;
+  const pod=[0,1,2].map(i=>{const o=LIGA[i];
+   if(!o){const t=freeMsg?'Se aceptan candidaturas.':'¿Tu barrio aún no sufre oficialmente? Una queja y entra en la liga.';freeMsg=true;
+    return `<li><div class="lg-row free"><span class="md">${PODIO[i].m}</span><span class="nm"><b>Puesto libre</b><small>${t}</small></span></div></li>`;}
+   const p=PODIO[Math.min(o.pos,3)-1];
+   return `<li><button type="button" class="lg-row" data-z="${i}"><span class="md">${p.m}</span><span class="nm"><b>${esc(o.z)}</b><small>${p.t}</small></span><span class="n">${nq(o.n)}</span></button></li>`;}).join('');
+  const rest=LIGA.slice(3,10).map((o,j)=>`<li data-z="${j+3}"><span class="p">${o.pos}.º</span><span class="z">${esc(o.z)}</span><span class="c">${nq(o.n)}</span></li>`).join('');
+  B.innerHTML=`<ol class="lg-list">${pod}</ol>${rest?`<ol class="lg-rest">${rest}</ol>`:''}`+
+   (ROWS.length<10?'<p class="lg-msg">Con tan pocas quejas esto es más pachanga que liga: cada queja mueve la clasificación.</p>':'');}
+ $('ligaBody').addEventListener('click',e=>{const el=e.target.closest('[data-z]');if(!el)return;const o=LIGA[+el.dataset.z];if(!o)return;closeSheet();goTo(o.la,o.lo,'🏆 '+o.z,16);});
+ $('ligaBtn').onclick=()=>{closeSheet();startPick();};
+ function ligaLine(row){const L=liga(ROWS),z=zKey(row),o=L.find(x=>x.z===z);if(!o)return '';
+  const tie=L.filter(x=>x.pos===o.pos).length>1,nuevo=o.n===1?'Zona nueva en la liga. ':'';
+  return o.pos===1?`🏆 ${nuevo}${esc(z)} ${tie?'comparte el liderato de':'lidera'} la liga del sufrimiento con ${nq(o.n)}.`:
+   `${o.pos<=3?PODIO[o.pos-1].m:'📊'} ${nuevo}${esc(z)} va ${o.pos}.º en la liga del sufrimiento con ${nq(o.n)}.`;}
+ async function load(){try{ROWS=await getAll();LOADED=true;render();counters();renderLiga();}catch(e){$('qCount').textContent='–';$('qCountTxt').textContent='quejas (no se han podido cargar ahora mismo)';renderLiga(true);}}
  /* capa */
  const cb=$('L_quejas');if(cb.checked)qL.addTo(map);cb.addEventListener('change',()=>cb.checked?qL.addTo(map):map.removeLayer(qL));
  /* ---- flujo de queja ---- */
- let picking=false,pt=null,ptMk=null,mot=null;
+ let picking=false,pt=null,ptMk=null,mot=null,LASTQ=null;
  const PICK_ICON=L.divIcon({className:'',html:'<div class="q-pin">😤</div>',iconSize:[40,46],iconAnchor:[20,44]});
  function inBox(la,lo){return la>=BBOX.s&&la<=BBOX.n&&lo>=BBOX.w&&lo<=BBOX.e;}
  function wait(){let t=0;try{t=+localStorage.getItem(LSK)||0;}catch(e){}t=Math.max(t,wait.mem||0);return Math.max(0,WAIT-(Date.now()-t));}
@@ -1936,10 +2163,15 @@ if(hm){const la=+hm[1],lo=+hm[2];let lb=null;try{lb=hm[3]?decodeURIComponent(hm[
    const j=await r.json().catch(()=>null);
    if(!r.ok){const msg=(j&&j.message)||'';const k=Object.keys(ERR).find(k=>msg.includes(k));throw new Error(k?ERR[k]:'No se ha podido enviar la queja. Prueba otra vez en un rato.');}
    const row=Array.isArray(j)?j[0]:j;wait.mem=Date.now();try{localStorage.setItem(LSK,String(Date.now()));}catch(e){}
-   if(row){ROWS.push(row);addRow(row);counters();}
+   const zq=zKey({zona:pt.zona,lat:pt.lat,lng:pt.lng}),pion=LOADED&&!ROWS.some(r=>zKey(r)===zq);
+   const done=row||{lat:pt.lat,lng:pt.lng,motivo:mot,zona:pt.zona,created_at:new Date().toISOString()};
+   if(row){ROWS.push(row);addRow(row);counters();renderLiga();}
+   LASTQ={lat:pt.lat,lng:pt.lng,where:zq,motivo:mot};
+   $('qLiga').innerHTML=row&&LOADED?ligaLine(done):'';
    if(!cb.checked){cb.checked=true;qL.addTo(map);}
    if(ptMk){map.removeLayer(ptMk);ptMk=null;}
-   $('qForm').hidden=true;$('qDone').hidden=false;setTimeout(()=>$('qOk').focus({preventScroll:true}),50);
+   $('qForm').hidden=true;$('qDone').hidden=false;setTimeout(()=>$('qCard').focus({preventScroll:true}),50);
+   if(window.rabaMedallas)setTimeout(()=>rabaMedallas.queja({zona:zq,motivo:mot,pionero:pion}),650);
   }catch(e){$('qErr').textContent=e.message;}
   finally{$('qSend').textContent='Enviar queja 😤';$('qSend').disabled=!mot;}
  };
@@ -1948,6 +2180,7 @@ if(hm){const la=+hm[1],lo=+hm[2];let lb=null;try{lb=hm[3]?decodeURIComponent(hm[
   toast('Buscándote… 🛰️',8000);navigator.geolocation.getCurrentPosition(p=>{$('toast').classList.remove('on');choosePoint(p.coords.latitude,p.coords.longitude,true);},
    ()=>toast('Sin ubicación, ningún drama: toca el mapa donde no has podido aparcar 👆',4500),{enableHighAccuracy:true,timeout:10000,maximumAge:60000});};
  $('qCancel').onclick=closeForm;$('qOk').onclick=closeForm;
+ $('qCard').onclick=()=>{if(!LASTQ||!window.rabaCard)return;closeForm();rabaCard.open({lat:LASTQ.lat,lon:LASTQ.lng,where:LASTQ.where,queja:MOT[LASTQ.motivo]||MOT.otro});};
  $('qModal').addEventListener('click',e=>{if(e.target.id==='qModal')closeForm();});
  document.addEventListener('keydown',e=>{if(e.key==='Escape'){if($('qModal').classList.contains('on'))closeForm();else if(picking)stopPick();}});
  /* ---- descargas (en vivo desde la API) ---- */
@@ -1961,7 +2194,7 @@ if(hm){const la=+hm[1],lo=+hm[2];let lb=null;try{lb=hm[3]?decodeURIComponent(hm[
   dl(`rabapark-quejas-${stamp()}.geojson`,'application/geo+json',JSON.stringify(fc,null,1));}catch(e){toast('No se ha podido descargar ahora mismo. Prueba en un rato 🙏');}};
  $('qApi').textContent=`GET ${SB}/quejas?select=*\napikey: ${KEY}`;
  $('qPanelBtn').onclick=()=>{closeSheet();startPick();};
- window.rabaparkQuejas={reload:load,rows:()=>ROWS};
+ window.rabaparkQuejas={reload:load,rows:()=>ROWS,liga:()=>liga(ROWS)};
  load();
 })();
 </script>
