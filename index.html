@@ -738,8 +738,6 @@ details.card[open]>summary{margin-bottom:8px}
 .sugg li.sg-obras .why{flex-basis:100%;font-size:.8rem;color:var(--mut);margin-left:26px}
 .obras-icon{background:#9aa0a6;border:2px solid #fff;border-radius:7px;font-size:14px;line-height:1;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px #0006;filter:grayscale(.15);opacity:.92}
 .escape .obras-n{display:block;margin-top:4px;color:#6b5a2e}
-.btn-loc{flex:none;height:46px;border:0;border-radius:12px;background:var(--acc);color:#fff;font-weight:800;padding:0 14px;box-shadow:var(--sh);cursor:pointer;white-space:nowrap}
-.btn-loc:active{transform:scale(.97)}
 .chips{display:flex;gap:6px;overflow-x:auto;pointer-events:auto;max-width:560px;padding-bottom:2px;scrollbar-width:none}
 .chips::-webkit-scrollbar{display:none}
 .chip{flex:none;border:1px solid #d5dbe4;background:#ffffffee;border-radius:999px;padding:6px 11px;font-size:.82rem;cursor:pointer;box-shadow:0 2px 8px #0f2a4718;white-space:nowrap}
@@ -807,12 +805,7 @@ code,.mono{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.78rem;ba
 .pk-icon{background:#0b5cad;color:#fff;border:2px solid #fff;border-radius:7px;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;box-shadow:0 1px 4px #0006}
 .pl-icon{font-size:20px;line-height:20px;text-align:center;filter:drop-shadow(0 1px 1px #0007)}
 .me{width:22px;height:22px;border-radius:50%;background:var(--acc);border:3px solid #fff;box-shadow:0 0 0 0 #ff7a45aa;animation:pulse 1.8s infinite}
-/* pin de "¿Dónde estoy?" = la Raba */
-.me-raba{position:relative;width:50px;height:68px}
-.me-raba .raba{position:absolute;left:0;top:0;width:50px;height:61px;filter:drop-shadow(0 3px 4px #0007);animation:hop 1.6s ease-in-out infinite;transform-origin:50% 100%}
-.me-raba:after{content:"";position:absolute;left:18px;bottom:0;width:14px;height:8px;border-radius:50%;background:var(--acc);border:2px solid #fff;box-shadow:0 0 0 0 #ff7a45aa;animation:pulse 1.8s infinite}
-@keyframes hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-@media (prefers-reduced-motion:reduce){.me-raba .raba,.logo,.me,.me-raba:after{animation:none}}
+@media (prefers-reduced-motion:reduce){.logo,.me{animation:none}}
 @keyframes pulse{0%{box-shadow:0 0 0 0 #ff7a45aa}70%{box-shadow:0 0 0 18px #ff7a4500}100%{box-shadow:0 0 0 0 #ff7a4500}}
 .maplegend{background:#ffffffee;padding:8px 10px;border-radius:10px;box-shadow:0 1px 5px #0003;font-size:.76rem;max-width:200px}
 .maplegend .row{display:flex;align-items:center;gap:6px;margin:2px 0}
@@ -822,23 +815,6 @@ footer.foot .heart{font-size:1rem}
 footer.foot .raba{width:64px;height:78px;display:block;margin:0 auto 2px}
 .v-hello{display:flex;gap:10px;align-items:center;padding-right:30px}.v-hello .v-intro-t{padding-right:0!important}.v-hello .raba{flex:none;width:50px;height:62px}
 .modal h3{display:flex;align-items:center;gap:8px}.modal h3 .raba{width:34px;height:42px;flex:none}
-/* GPS en tiempo real */
-.btn-loc.on,.mb-loc.on{background:#0f7b5f;box-shadow:0 0 0 3px #0f7b5f44,var(--sh)}
-.btn-loc.on .t:before,.mb-loc.on:before{content:"";display:inline-block;width:9px;height:9px;border-radius:50%;background:#7dffc8;margin-right:7px;vertical-align:1px;animation:gpsblink 1.4s infinite}
-.btn-loc.wait,.mb-loc.wait{opacity:.85}
-.mb-loc.on{line-height:1.1;white-space:nowrap}.mb-loc small{display:block;font-size:.72rem;font-weight:600;opacity:.85}
-@keyframes gpsblink{50%{opacity:.25}}
-.gps-acc{pointer-events:none}
-.gps-rec{border:0;border-radius:999px;background:#fff;color:#0f7b5f;font-weight:800;font-size:.86rem;min-height:40px;padding:0 14px;box-shadow:0 4px 14px #0f2a4740;cursor:pointer;white-space:nowrap;border:2px solid #0f7b5f55}
-.gps-rec:hover{background:#effaf6}
-.gps-rec[hidden]{display:none}
-.gps-bub{position:absolute;z-index:1004;left:50%;top:150px;transform:translate(-50%,-12px);opacity:0;pointer-events:none;transition:.3s;display:flex;align-items:center;gap:10px;background:#fff;border-radius:18px;padding:10px 14px 10px 10px;box-shadow:0 10px 30px #0f2a4740;width:max-content;max-width:min(420px,calc(100% - 20px));border-left:6px solid var(--c,#ff7a45)}
-.gps-bub.on{opacity:1;transform:translate(-50%,0)}
-.gps-bub .raba{flex:none;width:40px;height:50px}
-.gps-bub p{margin:0;font-size:.86rem;line-height:1.35}
-.gps-bub b.l{display:inline-block;padding:1px 8px;border-radius:999px;font-size:.8rem;margin:0 2px}
-.gps-bub small{display:block;color:var(--mut);font-size:.74rem;margin-top:2px}
-@media (max-width:860px){.mbar .gps-rec{flex:none;width:54px;padding:0;font-size:1.3rem;border:2px solid #0f7b5f55}.mbar .gps-rec .t{display:none}}
 .q-move{border:0;background:none;color:var(--acc);font-weight:800;font-size:.84rem;cursor:pointer;padding:2px 4px;text-decoration:underline}
 /* toast + modal */
 #toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(30px);background:#14202e;color:#fff;padding:10px 16px;border-radius:12px;font-size:.88rem;z-index:3000;opacity:0;transition:.25s;pointer-events:none;max-width:92vw;text-align:center}
@@ -865,7 +841,6 @@ footer.foot .raba{width:64px;height:78px;display:block;margin:0 auto 2px}
  .honest{font-size:.8rem;padding:6px 12px;line-height:1.3}
  .wrap{display:block;position:relative}
  .mapcol{position:absolute;inset:0;height:auto;min-height:0}
- .btn-loc{display:none}
  .search input{height:48px}
  .chip{min-height:38px;padding:8px 13px;font-size:.88rem}
  .minileg{display:inline-flex;align-self:flex-start;align-items:center;gap:6px;background:#ffffffe6;border-radius:999px;padding:4px 10px;box-shadow:0 2px 8px #0f2a4718;font-size:.8rem;pointer-events:none}
@@ -873,7 +848,7 @@ footer.foot .raba{width:64px;height:78px;display:block;margin:0 auto 2px}
  .minileg small{color:var(--mut);font-size:.72rem}
  .mbar{display:flex;gap:8px;position:absolute;z-index:1003;left:10px;right:10px;bottom:calc(22px + env(safe-area-inset-bottom))}
  .mbar button{height:54px;border-radius:16px;border:0;font-weight:800;font-size:1rem;box-shadow:0 8px 24px #0f2a4740;cursor:pointer}
- .mb-loc{flex:1.25;background:var(--acc);color:#fff}
+ .mb-q{flex:1.35;background:#e63946;color:#fff}
  .mb-more{flex:1;background:var(--navy);color:#fff}
  .mbar button:active{transform:scale(.97)}
  .verdict{top:auto;bottom:calc(86px + env(safe-area-inset-bottom));left:8px;right:8px;width:auto;max-height:calc(100% - 86px - 150px);border-radius:18px;padding:12px 14px}
@@ -914,7 +889,6 @@ footer.foot .raba{width:64px;height:78px;display:block;margin:0 auto 2px}
  .modal .btn{min-height:48px}
  #toast{bottom:calc(92px + env(safe-area-inset-bottom))}
 }
-@media (min-width:861px){ .btn-loc .s{display:none} }
 </style>
 <style id="rabuca-intro-css">
 /* ===== Intro de Rabuca ===== */
@@ -1028,17 +1002,27 @@ html.intro-back #inSkip{order:-1}
 @media (max-height:760px) and (max-width:599px){.in-hero{gap:7px;padding-top:6px}}
 /* quejas ciudadanas */
 .tb-q{display:flex;align-items:center;gap:8px;pointer-events:none;max-width:560px}
-.btn-queja{pointer-events:auto;margin-left:auto;flex:none;border:0;border-radius:999px;min-height:42px;padding:0 16px;background:#fff;color:#b3261e;font-weight:800;font-size:.92rem;box-shadow:0 4px 14px #0f2a4733;border:2px solid #f5b5b0;cursor:pointer;white-space:nowrap}
-.btn-queja:hover{background:#fff4f3}
+.btn-queja{pointer-events:auto;flex:none;height:46px;border:0;border-radius:12px;padding:0 16px;background:#e63946;color:#fff;font-weight:800;font-size:.95rem;box-shadow:var(--sh);cursor:pointer;white-space:nowrap}
+.btn-queja:hover{background:#d62f3c}
 .btn-queja:active{transform:scale(.97)}
-@media (min-width:861px){.tb-q{max-width:none}.btn-queja{margin-left:0}}
+@media (max-width:860px){.tb-row .btn-queja{display:none}}
 body.q-picking #map{cursor:crosshair}
+body.q-picking .me{display:none}
 body.q-picking .toolbar,body.q-picking .verdict,body.q-picking .mbar{visibility:hidden}
 .q-bar{position:absolute;z-index:1005;top:10px;left:10px;right:10px;max-width:560px;background:#14202e;color:#fff;border-radius:16px;padding:12px 14px;box-shadow:0 10px 30px #0006;display:flex;flex-direction:column;gap:10px}
 .q-bar[hidden]{display:none}
 .q-bar b{font-size:1rem;line-height:1.3}
 .q-bar-b{display:flex;gap:8px}
 .q-bar-b .btn{min-height:44px;flex:1;background:#ffffff1a;color:#fff;border-color:#ffffff33}
+.q-bar-b .btn.pri{flex:1.4;background:#e63946;border-color:#e63946}
+.q-bar-t{font-size:.86rem;opacity:.85;margin-top:-6px}
+.q-geo{align-self:flex-start;background:none;border:0;padding:2px 0;color:#ffd27a;font:inherit;font-size:.85rem;font-weight:700;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.q-geo:disabled{opacity:.7;cursor:progress;text-decoration:none}
+.q-geo-msg{margin:-4px 0 0;font-size:.85rem;line-height:1.35;color:#ffe2cf}
+.q-geo-msg:empty{display:none}
+.q-pin.drag{cursor:grab;animation:pinbob 1.4s ease-in-out infinite}
+@keyframes pinbob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+@media (prefers-reduced-motion:reduce){.q-pin.drag{animation:none}}
 .q-pin{font-size:30px;line-height:40px;text-align:center;width:40px;height:40px;background:#fff;border-radius:50%;box-shadow:0 3px 8px #0006;border:2px solid #e63946;font-size:24px}
 .q-pin{display:flex;align-items:center;justify-content:center}
 .q-modal .box{max-height:92vh;max-height:92dvh;overflow:auto}
@@ -1238,7 +1222,7 @@ try{if(localStorage.getItem('rabuca-intro-v1'))d.classList.add('intro-back');}ca
      <p class="in-h">6 · ¿Harto de dar vueltas? Que se oiga</p>
      <p class="bub">Dar vueltas a la manzana no sale en ninguna estadística. Tu queja, sí:</p>
      <div class="bub"><ol class="in-ol">
-      <li><span>1</span><span>Pulsa <b>😤 Me quejo aquí</b> y marca en el mapa dónde no has podido aparcar.</span></li>
+      <li><span>1</span><span>Pulsa <b>😤 Me quejo aquí</b> y arrastra el pin hasta donde no has podido aparcar.</span></li>
       <li><span>2</span><span>Elige el motivo y, si quieres, deja un comentario. <b>Anónimo</b>: ni nombre, ni correo.</span></li>
       <li><span>3</span><span>Se convierte en <b>datos abiertos</b> (CSV y GeoJSON, CC BY 4.0) para quien quiera: prensa, asociaciones de vecinos o el propio Ayuntamiento.</span></li>
      </ol></div>
@@ -1247,7 +1231,7 @@ try{if(localStorage.getItem('rabuca-intro-v1'))d.classList.add('intro-back');}ca
     <section class="in-slide" data-p="📱" aria-label="Paso 7 de 7">
      <p class="in-h">7 · Cómo se usa</p>
      <div class="bub">Más fácil que pedir unas rabas:<ul>
-      <li><span>📍</span><span><b>¿Dónde estoy?</b> Te sigo por el mapa y te digo cuánto sufres en cada calle por la que pasas. Tu ubicación no sale de tu móvil.</span></li>
+      <li><span>👆</span><span><b>Toca el mapa.</b> Te digo cuánto vas a sufrir en esa calle y dónde tienes el parking de escape.</span></li>
       <li><span>🔎</span><span><b>Buscador.</b> Escribe a dónde vas: Valdecilla, El Sardinero, una calle…</span></li>
       <li><span>🏆</span><span><b>Ranking.</b> El top 5 para llorar y el top 5 de remansos de paz.</span></li>
       <li><span>📣</span><span><b>Compartir.</b> Para presumir de sufrimiento en el grupo de la cuadrilla.</span></li>
@@ -1282,15 +1266,14 @@ try{if(localStorage.getItem('rabuca-intro-v1'))d.classList.add('intro-back');}ca
     <input id="q" type="search" placeholder="¿A dónde vas? Sardinero, Valdecilla, una calle…" autocomplete="off" enterkeyhint="search" aria-label="Buscar destino">
     <ul class="sugg" id="sugg" role="listbox"></ul>
    </div>
-   <button class="btn-loc" id="loc" title="Te sigo por el mapa y calculo el sufrimiento donde estás" aria-pressed="false"><span class="s">📍</span><span class="t">📍 ¿Dónde estoy?</span></button>
+   <button class="btn-queja" id="qBtn" type="button">😤 Me quejo aquí</button>
   </div>
   <div class="chips" id="chips"></div>
-  <div class="tb-q"><div class="minileg m" aria-hidden="true"><span>😇</span><i></i><span>💀</span><small>ISA estimado · toca el mapa</small></div><button class="btn-queja" id="qBtn" type="button">😤 Me quejo aquí</button></div>
+  <div class="tb-q"><div class="minileg m" aria-hidden="true"><span>😇</span><i></i><span>💀</span><small>ISA estimado · toca el mapa</small></div></div>
  </div>
  <div class="verdict" id="verdict"></div>
- <div class="q-bar" id="qBar" hidden role="status"><b>😤 Toca el mapa donde no has podido aparcar</b><div class="q-bar-b"><button type="button" class="btn" id="qHere">📍 Estoy aquí</button><button type="button" class="btn" id="qCancelPick">Cancelar</button></div></div>
- <div class="gps-bub" id="gpsBub" role="status" aria-live="polite"><span class="raba" aria-hidden="true"></span><p id="gpsBubT"></p></div>
- <div class="mbar"><button class="mb-loc" id="loc2" aria-pressed="false">📍 ¿Dónde estoy?</button><button class="mb-more" id="more" aria-controls="panel">🏆 Ranking</button></div>
+ <div class="q-bar" id="qBar" hidden role="status"><b>😤 ¿Dónde no has podido aparcar?</b><span class="q-bar-t">Arrastra el pin o toca el mapa para moverlo.</span><div class="q-bar-b"><button type="button" class="btn pri" id="qPinOk">✅ Es aquí</button><button type="button" class="btn" id="qCancelPick">Cancelar</button></div><button type="button" class="q-geo" id="qHere">📍 Usar mi ubicación</button><p class="q-geo-msg" id="qGeoMsg" aria-live="polite"></p></div>
+ <div class="mbar"><button class="mb-q" id="qBtn2" type="button">😤 Me quejo aquí</button><button class="mb-more" id="more" aria-controls="panel">🏆 Ranking</button></div>
 </section>
 <div class="scrim" id="scrim"></div>
 <aside class="panel" id="panel">
@@ -1615,7 +1598,7 @@ function recolor(){
  ['wO','wB','wC','wV'].forEach(k=>$('o_'+k).textContent=$(k).value);$('o_a').textContent=$('a').value+'%';
  $('chipSummer')&&$('chipSummer').classList.toggle('on',$('summer').checked);
  renderRank();
- if(CUR)verdict(CUR.lat,CUR.lon,CUR.label,true,CUR.me);
+ if(CUR)verdict(CUR.lat,CUR.lon,CUR.label,true);
 }
 
 /* ===== Ranking ===== */
@@ -1635,21 +1618,16 @@ let CUR=null,meMk=null,lastShare='';
 const V=$('verdict');
 function showIntro(){
  V.innerHTML=`<button class="v-close" aria-label="Cerrar">✕</button><p class="v-where v-ix">Bienvenida/o al</p><div class="v-hello"><span class="raba" role="img" aria-label="Rabuca"></span><div class="v-intro-t" style="font-weight:900;font-size:1.15rem;line-height:1.25;padding-right:34px">¿Cuánto vas a sufrir? <span style="white-space:nowrap">😇→💀</span></div></div>
- <p class="v-quip" style="font-style:normal">Soy Rabuca 🦑. Toca el mapa, busca tu destino o pulsa <b>📍</b> y te diré cuánto vas a sufrir para aparcar… y dónde está tu parking de escape.</p>
+ <p class="v-quip" style="font-style:normal">Soy Rabuca 🦑. Toca el mapa o busca tu destino y te diré cuánto vas a sufrir para aparcar… y dónde está tu parking de escape. ¿Ya lo has sufrido? Pulsa <b>😤 Me quejo aquí</b>.</p>
  <div class="v-disc v-ix">Presión estimada con datos abiertos, <b>no plazas libres en tiempo real</b>.</div>`;
  V.classList.remove('hide');
 }
 const ICON_DOT=L.divIcon({className:'',html:'<div class="me"></div>',iconSize:[22,22],iconAnchor:[11,11]});
-const ICON_RABA=L.divIcon({className:'',html:'<div class="me-raba" title="Estás aquí (con Rabuca)"><span class="raba"></span></div>',iconSize:[50,68],iconAnchor:[25,64]});
-function verdict(lat,lon,label,silent,me){
- const c=cellAt(lat,lon),prev=CUR;CUR={lat,lon,label,me:!!me};
- const ic=me?ICON_RABA:ICON_DOT,live=me&&GPS.on;
- if(live){if(meMk){map.removeLayer(meMk);meMk=null;}}
- else if(meMk){meMk.setLatLng([lat,lon]);if(meMk.options.icon!==ic)meMk.setIcon(ic);}else meMk=L.marker([lat,lon],{zIndexOffset:2000,interactive:false,icon:ic}).addTo(map);
+function verdict(lat,lon,label,silent){
+ const c=cellAt(lat,lon),prev=CUR;CUR={lat,lon,label};
+ if(meMk)meMk.setLatLng([lat,lon]);else meMk=L.marker([lat,lon],{zIndexOffset:2000,interactive:false,icon:ICON_DOT}).addTo(map);
  const where=label||streetNear(lat,lon)||refNear(lat,lon)||'Punto seleccionado';
- /* siguiéndote en vivo: tu posición no se escribe en la URL (así no viaja si compartes el enlace) */
- if(live)history.replaceState(null,'',location.pathname+location.search);
- else history.replaceState(null,'',`#@${lat.toFixed(5)},${lon.toFixed(5)}${label&&!me?'~'+encodeURIComponent(label):''}`);
+ history.replaceState(null,'',`#@${lat.toFixed(5)},${lon.toFixed(5)}${label?'~'+encodeURIComponent(label):''}`);
  if(!c){
   V.innerHTML=`<button class="v-close" aria-label="Cerrar">✕</button><p class="v-where">📍 ${esc(where)}</p><div class="v-main"><span class="v-emoji">🤷</span><div><div style="font-weight:900;font-size:1.2rem">Fuera de cobertura</div><div style="color:var(--mut);font-size:.86rem">Aquí no medimos el sufrimiento</div></div></div>
   <p class="v-quip">O estás fuera de Santander, o en una zona sin señalización municipal cerca (parques, periferia, el mar…). No inventamos datos: mejor un «no sé» que un falso remanso.</p>
@@ -1681,12 +1659,12 @@ function verdict(lat,lon,label,silent,me){
  <div class="v-disc">⚠️ Presión <b>estimada y estructural</b> para la celda de 150 m, no plazas libres en tiempo real.</div>`;
  V.classList.remove('hide');
  $('vShare').onclick=()=>share(true);
- $('vCard').onclick=()=>window.rabaCard&&rabaCard.open({lat,lon,where:me?(refNear(lat,lon)||streetNear(lat,lon)||'Santander'):where,quip});
+ $('vCard').onclick=()=>window.rabaCard&&rabaCard.open({lat,lon,where,quip});
  if($('vSum'))$('vSum').onclick=()=>{$('summer').checked=true;recolor();toast('☀️ Modo verano: las playas pesan el doble. Suerte.');};
  $('vPk').onclick=()=>{map.flyTo([np.p.lat,np.p.lon],17,{duration:.8});pkMk[D.parkings.indexOf(np.p)].openPopup();};
 }
 V.addEventListener('click',e=>{if(e.target.closest('.v-close')){V.classList.add('hide');}});
-function goTo(lat,lon,label,z,me){const zz=Math.max(map.getZoom(),z||16);verdict(lat,lon,label,false,me);map.flyTo(offC(lat,lon,zz),zz,{duration:.9});}
+function goTo(lat,lon,label,z){const zz=Math.max(map.getZoom(),z||16);verdict(lat,lon,label,false);map.flyTo(offC(lat,lon,zz),zz,{duration:.9});}
 map.on('click',e=>{if(window.QPICK)return;verdict(e.latlng.lat,e.latlng.lng,null);$('sugg').classList.remove('on');
  if(mob){const vt=V.getBoundingClientRect().top-map.getContainer().getBoundingClientRect().top;if(e.containerPoint.y>vt-24)map.panTo(offC(e.latlng.lat,e.latlng.lng,map.getZoom()));}});
 
@@ -1696,143 +1674,8 @@ function closeSheet(){$('panel').classList.remove('open');$('scrim').classList.r
 $('more').onclick=openSheet;$('sheetX').onclick=closeSheet;$('scrim').onclick=closeSheet;
 (()=>{let y0=null;const h=document.querySelector('.sheet-h');h.addEventListener('touchstart',e=>{y0=e.touches[0].clientY;},{passive:true});
  h.addEventListener('touchend',e=>{if(y0!==null&&e.changedTouches[0].clientY-y0>50)closeSheet();y0=null;});})();
-/* ===== Geolocalización ===== */
+/* ===== Avisos ===== */
 function toast(t,ms){const el=$('toast');el.textContent=t;el.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove('on'),ms||3200);}
-/* Seguimiento en tiempo real (watchPosition). La posición se queda en el dispositivo:
-   solo sale si el usuario envía una queja (y entonces solo el punto de la queja). */
-const GEO_BOX={s:43.40,n:43.52,w:-3.92,e:-3.72};/* mismo recuadro que admite Supabase */
-const inGeoBox=(la,lo)=>la>=GEO_BOX.s&&la<=GEO_BOX.n&&lo>=GEO_BOX.w&&lo<=GEO_BOX.e;
-const GPS={on:false,id:null,follow:true,last:null,cell:undefined,bubT:0,bubLv:null,mk:null,acc:null,anim:0,paused:false,fixes:0,toWarned:false};
-const GEO_OPT={enableHighAccuracy:true,maximumAge:5000,timeout:20000};
-const GQ=[
- ['Celda de las buenas. Aparca tranquilo, que aquí hasta sobra bordillo.','Remanso de paz detectado. No hagas ruido, que se corre la voz.'],
- ['Zona llevadera: una vuelta a la manzana y listo.','Aquí se encuentra hueco sin pedir favores a nadie.'],
- ['Empiezan los sudores. Ojo a los vados, que se camuflan.','Zona de «uy, ¿ahí cabe?». Spoiler: era una moto.'],
- ['Entras en el infierno. Si vas en coche, ve pensando en el parking.','Aquí el intermitente echa humo. Respira hondo.'],
- ['Abandona toda esperanza. Si llevas coche, mi más sentido pésame.','Nivel máximo de sufrimiento. Andando se llega antes, te lo digo yo.']];
-(()=>{const b=document.createElement('button');b.className='gps-rec';b.type='button';b.id='gpsRec';b.hidden=true;b.title='Volver a seguirte';b.setAttribute('aria-label','Recentrar: volver a seguirte');
- b.innerHTML='🎯<span class="t"> Recentrar</span>';
- b.onclick=()=>{GPS.follow=true;b.hidden=true;if(GPS.last&&!(CUR&&CUR.me))verdict(GPS.last.lat,GPS.last.lon,'Tu ubicación',false,true);if(GPS.last){const z=Math.max(map.getZoom(),16);map.flyTo(gpsCenter(GPS.last.lat,GPS.last.lon,z),z,{duration:.6});}};
- if(mob){$('loc2').after(b);}/* en móvil, en la barra de abajo: a mano del pulgar y sin taparse con el veredicto */
- else{const c=L.control({position:'bottomleft'});c.onAdd=()=>{const w=L.DomUtil.create('div','leaflet-control');L.DomEvent.disableClickPropagation(w);w.appendChild(b);return w;};c.addTo(map);}})();
-function gpsBtns(state){
- ['loc','loc2'].forEach(id=>{const b=$(id);b.classList.toggle('on',state==='on');b.classList.toggle('wait',state==='wait');b.setAttribute('aria-pressed',state==='off'?'false':'true');});
- const t=state==='on'?'Siguiéndote · parar':state==='wait'?'🛰️ Buscándote…':'📍 ¿Dónde estoy?';
- $('loc').querySelector('.t').textContent=t;$('loc').querySelector('.s').textContent=state==='off'?'📍':'🛰️';$('loc2').innerHTML=state==='on'?'Siguiéndote<small>toca para parar</small>':t;
- $('loc').title=$('loc2').title=state==='off'?'Te sigo por el mapa y calculo el sufrimiento donde estás':'Toca para dejar de seguirte';
-}
-/* Geometría del hueco libre del mapa (px relativos al contenedor del mapa) */
-function gpsGeom(){
- const mr=map.getContainer().getBoundingClientRect(),tb=document.querySelector('.toolbar').getBoundingClientRect(),vOn=!V.classList.contains('hide'),vr=V.getBoundingClientRect();
- const mbar=document.querySelector('.mbar'),mbTop=mob&&mbar?mbar.getBoundingClientRect().top-mr.top:mr.height;
- const g={mr,top:tb.bottom-mr.top,bottom:mob?(vOn?vr.top-mr.top:mbTop):mr.height,xl:0,xr:mr.width};
- if(!mob&&vOn&&vr.left-mr.left>260)g.xr=vr.left-mr.left;/* escritorio: el veredicto flota a la derecha */
- return g;
-}
-const RABA_H=72;/* alto del pin de Rabuca (anclado por abajo) + margen */
-/* Reparto del hueco libre cuando te sigo: bocadillo arriba y Rabuca en la parte media-baja;
-   si no cabe todo (móvil pequeño con el veredicto abierto), Rabuca arriba y el bocadillo justo debajo. Nunca encima. */
-function gpsLayout(){
- const g=gpsGeom(),b=$('gpsBub'),on=b.classList.contains('on'),h=on?b.offsetHeight:0,top0=g.top+8,bot=g.bottom-16,tx=(g.xl+g.xr)/2;
- if(!on){const t=top0+RABA_H;return {g,tx,ty:bot>t?t+(bot-t)*.55:t,bubTop:top0};}
- const t=top0+h+6+RABA_H;
- if(bot>=t)return {g,tx,ty:t+(bot-t)*.55,bubTop:top0};
- const ty=top0+RABA_H;return {g,tx,ty,bubTop:ty+10};
-}
-function gpsCenter(lat,lon,z){
- const L0=gpsLayout(),sz=map.getSize();
- return map.unproject(map.project([lat,lon],z).add([sz.x/2-L0.tx,sz.y/2-L0.ty]),z);
-}
-/* Coloca el bocadillo: siguiéndote, según el reparto de arriba; sin seguirte, bajo la barra de búsqueda. Si en ese momento taparía a Rabuca, se aparta por debajo o por encima */
-function gpsPlaceBub(){
- const b=$('gpsBub');if(!b.classList.contains('on'))return;
- const g=gpsGeom(),col=b.offsetParent?b.offsetParent.getBoundingClientRect():g.mr,dx=g.mr.left-col.left,dy=g.mr.top-col.top;
- const w=Math.max(200,Math.min(420,g.xr-g.xl-20));b.style.maxWidth=w+'px';
- const cx=(g.xl+g.xr)/2;b.style.left=Math.round(cx+dx)+'px';
- const h=b.offsetHeight,bw=b.offsetWidth;let top=g.top+8;
- const e=GPS.mk&&GPS.mk.getElement();
- if(GPS.follow)top=gpsLayout().bubTop;
- if(e){/* también mientras el mapa aún se está moviendo */const r=e.getBoundingClientRect(),mt=r.top-g.mr.top-6,mbt=r.bottom-g.mr.top+6,ml=r.left-g.mr.left,mrt=r.right-g.mr.left;
-  const hit=t=>t<mbt&&t+h>mt&&cx-bw/2<mrt&&cx+bw/2>ml;
-  if(hit(top)){const below=mbt+4,above=mt-h-4;top=below+h<=g.bottom?below:above>=g.top?above:below;}}
- b.style.top=Math.round(top+dy)+'px';
-}
-function gpsBubble(html,col,ms){const b=$('gpsBub');
- $('gpsBubT').innerHTML=html;b.style.setProperty('--c',col||'#ff7a45');b.classList.add('on');gpsPlaceBub();
- if(GPS.follow&&GPS.last&&GPS.fixes>1)map.panTo(gpsCenter(GPS.last.lat,GPS.last.lon,map.getZoom()),{animate:true,duration:.6});
- clearTimeout(gpsBubble.t);gpsBubble.t=setTimeout(()=>b.classList.remove('on'),ms||5500);}
-/* Actualiza los números del bocadillo visible sin animación nueva (así nunca contradice al veredicto) */
-function gpsBubRefresh(html,col){const b=$('gpsBub');if(!b.classList.contains('on'))return false;$('gpsBubT').innerHTML=html;b.style.setProperty('--c',col);gpsPlaceBub();return true;}
-map.on('move zoomend',()=>{if(GPS.on)gpsPlaceBub();});
-function gpsWatch(){if(GPS.id===null)GPS.id=navigator.geolocation.watchPosition(gpsPos,gpsErr,GEO_OPT);}
-function gpsUnwatch(){if(GPS.id!==null){navigator.geolocation.clearWatch(GPS.id);GPS.id=null;}}
-function gpsStart(){
- if(!window.isSecureContext){toast('Sin conexión segura (https) el navegador no me deja saber dónde estás. Toca el mapa donde estés 👆',5000);return;}
- if(!navigator.geolocation){toast('Tu navegador no comparte ubicación. Toca el mapa donde estés 👆',4500);return;}
- Object.assign(GPS,{on:true,follow:true,cell:undefined,bubT:0,bubLv:null,bub:{},paused:false,fixes:0,toWarned:false});
- gpsBtns('wait');toast('Buscándote… 🛰️ Tu ubicación no sale de tu móvil.',8000);gpsWatch();
-}
-function gpsStop(msg){
- gpsUnwatch();cancelAnimationFrame(GPS.anim);GPS.on=false;GPS.paused=false;GPS.last=null;
- if(GPS.mk){map.removeLayer(GPS.mk);GPS.mk=null;}if(GPS.acc){map.removeLayer(GPS.acc);GPS.acc=null;}
- const r=$('gpsRec');if(r)r.hidden=true;$('gpsBub').classList.remove('on');gpsBtns('off');
- if(CUR&&CUR.me)history.replaceState(null,'',location.pathname+location.search);
- if(msg)toast(msg,5000);
-}
-function gpsMove(la,lo){/* desliza a Rabuca hasta la nueva posición */
- const mk=GPS.mk,from=mk.getLatLng(),t0=performance.now(),T=matchMedia('(prefers-reduced-motion:reduce)').matches?0:900;
- cancelAnimationFrame(GPS.anim);
- const step=now=>{const k=T?Math.min(1,(now-t0)/T):1,e=1-Math.pow(1-k,3),ll=[from.lat+(la-from.lat)*e,from.lng+(lo-from.lng)*e];
-  mk.setLatLng(ll);if(GPS.acc)GPS.acc.setLatLng(ll);if(k<1)GPS.anim=requestAnimationFrame(step);gpsPlaceBub();};
- GPS.anim=requestAnimationFrame(step);
-}
-function gpsPos(pos){
- if(!GPS.on)return;
- const {latitude:la,longitude:lo,accuracy:ac}=pos.coords;
- if(!inGeoBox(la,lo)){gpsStop('Parece que no estás en Santander 🦑. Solo sé de aparcar aquí: cuando vengas, vuelve a pulsar 📍. Mientras, toca el mapa y cotillea.');return;}
- const first=!GPS.fixes++;GPS.last={lat:la,lon:lo,acc:ac};GPS.t=Date.now();
- if(first){gpsBtns('on');$('toast').classList.remove('on');
-  GPS.mk=L.marker([la,lo],{zIndexOffset:2000,interactive:false,icon:ICON_RABA,keyboard:false}).addTo(map);
-  GPS.acc=L.circle([la,lo],{radius:ac,className:'gps-acc',color:'#0f7b5f',weight:1,fillColor:'#0f7b5f',fillOpacity:.1,interactive:false}).addTo(map);
- }else{GPS.acc.setRadius(ac);gpsMove(la,lo);}
- const c=cellAt(la,lo),changed=c!==GPS.cell;
- const lbl='Tu ubicación'+(ac>150?` (±${Math.round(ac)} m)`:'');
- if(first){verdict(la,lo,lbl,false,true);GPS.cell=c;gpsCell(c,true,ac);const z=Math.max(map.getZoom(),16);map.flyTo(gpsCenter(la,lo,z),z,{duration:.9});return;}
- if(changed){if(CUR&&CUR.me)verdict(la,lo,lbl,true,true);GPS.cell=c;gpsCell(c,false,ac);}
- if(GPS.follow)map.panTo(gpsCenter(la,lo,map.getZoom()),{animate:true,duration:.8});
-}
-function gpsCell(c,first,ac){
- const now=Date.now(),B=GPS.bub||(GPS.bub={});
- const X=()=>'🤷 <b>Zona sin medir.</b> Aquí no hay señalización municipal cerca y no me invento nada.';
- if(!c){
-  if(B.kind&&B.kind!=='x'&&gpsBubRefresh(X(),'#8a96a3')){B.kind='x';GPS.bubLv='x';return;}
-  if(!first&&GPS.bubLv!=='x'&&now-GPS.bubT>15000){GPS.bubT=now;GPS.bubLv='x';B.kind='x';gpsBubble(X(),'#8a96a3');}return;}
- const s=Math.round(score(c,params()).s),ix=LV.findIndex(l=>s<l.max),l=LV[ix];/* mismo redondeo que el veredicto */
- const badge=`<b class="l" style="background:${l.col};color:${l.fg}">${l.em} ${l.name}</b> (${s}/100)`;
- const priv=`<small>🔒 Tu ubicación no sale de tu móvil. Solo viaja si envías una queja.${ac>150?' · Precisión baja (±'+fmt(Math.round(ac))+' m)':''}</small>`;
- const joke=()=>{if(B.jl!==ix){B.jl=ix;B.joke=pick(GQ[ix]);}return esc(B.joke);};
- const cellHTML=()=>`<b>Celda nueva:</b> ${badge}<br>${joke()}`;
- if(first){GPS.bubT=now;GPS.bubLv=ix;B.kind='first';gpsBubble(`Te sigo 🦑 Aquí: ${badge}${priv}`,l.col,7000);return;}
- /* el bocadillo que se está viendo se actualiza al momento: nunca enseña otra celda distinta a la del veredicto */
- if(B.kind&&gpsBubRefresh(B.kind==='first'?`Te sigo 🦑 Aquí: ${badge}${priv}`:cellHTML(),l.col)){if(B.kind==='x')B.kind='cell';GPS.bubLv=ix;return;}
- /* sin spam: como mucho un aviso nuevo cada 15 s, o cada 6 s si cambia el nivel */
- if(now-GPS.bubT<(ix!==GPS.bubLv?6000:15000))return;
- GPS.bubT=now;GPS.bubLv=ix;B.kind='cell';B.jl=null;
- gpsBubble(cellHTML(),l.col);
-}
-function gpsErr(err){
- if(!GPS.on)return;
- if(err.code===1){gpsStop('Sin permiso de ubicación no te puedo seguir. Ningún drama: toca el mapa donde estés 👆 (si cambias de idea, actívalo en los ajustes del navegador).');return;}
- if(err.code===3){if(!GPS.toWarned){GPS.toWarned=true;toast(GPS.fixes?'El GPS se ha quedado pensando… sigo intentándolo 🛰️':'El satélite se lo está pensando… sigo intentándolo 🛰️ Si tarda, toca el mapa 👆',5000);}return;}
- if(!GPS.fixes){gpsStop('El GPS está más perdido que yo buscando aparcamiento. Prueba al aire libre o toca el mapa donde estés 👆');return;}
- if(Date.now()-(GPS.t||0)>10000)toast('Se me ha ido la señal un momento. En cuanto vuelva, sigo contigo 🛰️',4000);
-}
-$('loc').onclick=$('loc2').onclick=()=>{if(GPS.on)gpsStop('Vale, dejo de seguirte. Rabuca se queda quieta 🦑');else gpsStart();};
-function gpsUnfollow(){if(GPS.on&&GPS.follow){GPS.follow=false;const r=$('gpsRec');if(r)r.hidden=false;}}
-map.on('dragstart',gpsUnfollow);map.on('click',()=>{if(!window.QPICK)gpsUnfollow();});
-document.addEventListener('visibilitychange',()=>{if(!GPS.on)return;
- if(document.hidden){gpsUnwatch();GPS.paused=true;}else if(GPS.paused){GPS.paused=false;gpsWatch();}});
-window.rabaparkGPS={state:()=>({on:GPS.on,follow:GPS.follow,watching:GPS.id!==null,last:GPS.last,cell:GPS.cell?D.cells.indexOf(GPS.cell):null})};
 
 /* ===== Buscador de destinos (sin geocoder externo) ===== */
 const norm=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
@@ -2124,24 +1967,38 @@ if(hm){const la=+hm[1],lo=+hm[2];let lb=null;try{lb=hm[3]?decodeURIComponent(hm[
  /* ---- flujo de queja ---- */
  let picking=false,pt=null,ptMk=null,mot=null,LASTQ=null;
  const PICK_ICON=L.divIcon({className:'',html:'<div class="q-pin">😤</div>',iconSize:[40,46],iconAnchor:[20,44]});
+ const DRAG_ICON=L.divIcon({className:'',html:'<div class="q-pin drag" title="Arrástrame">😤</div>',iconSize:[40,46],iconAnchor:[20,44]});
+ let mine=false;
+ const geoMsg=t=>{$('qGeoMsg').textContent=t||'';};
  function inBox(la,lo){return la>=BBOX.s&&la<=BBOX.n&&lo>=BBOX.w&&lo<=BBOX.e;}
  function wait(){let t=0;try{t=+localStorage.getItem(LSK)||0;}catch(e){}t=Math.max(t,wait.mem||0);return Math.max(0,WAIT-(Date.now()-t));}
- const liveAt=()=>GPS.on&&GPS.last&&inBox(GPS.last.lat,GPS.last.lon)?GPS.last:null;
- function startPick(e,manual){
+ /* el pin empieza donde estabas mirando (el punto tocado, si lo hay) y se arrastra o se mueve tocando el mapa */
+ function pinAt(ll){if(ptMk){map.removeLayer(ptMk);ptMk=null;}
+  ptMk=L.marker(ll,{icon:DRAG_ICON,draggable:true,autoPan:true,zIndexOffset:3000,keyboard:false}).addTo(map);
+  ptMk.on('dragstart',()=>{mine=false;geoMsg('');});}
+ function startPick(e,at){
   const w=wait();if(w>0){toast(`Rabuca toma nota, pero de una en una: espera ${Math.ceil(w/1000)} s para la siguiente queja 🦑`,4000);return;}
-  const lv=!manual&&liveAt();if(lv){closeSheet();V.classList.add('hide');choosePoint(lv.lat,lv.lon,true);return;}
-  closeSheet();V.classList.add('hide');picking=true;window.QPICK=true;document.body.classList.add('q-picking');$('qBar').hidden=false;
+  closeSheet();V.classList.add('hide');picking=true;window.QPICK=true;document.body.classList.add('q-picking');$('qBar').hidden=false;geoMsg('');
+  const sz=map.getSize(),top=$('qBar').getBoundingClientRect().bottom-map.getContainer().getBoundingClientRect().top,want=L.point(sz.x/2,(Math.max(0,top)+sz.y)/2);
+  let ll=at?L.latLng(at.lat,at.lng):CUR?L.latLng(CUR.lat,CUR.lon):map.getZoom()>=15?map.containerPointToLatLng(want):L.latLng(43.46188,-3.810316);
+  if(!inBox(ll.lat,ll.lng))ll=L.latLng(43.46188,-3.810316);
+  if(!at)mine=false;pinAt(ll);
+  /* que el pin quede a la vista, bajo la barra de instrucciones, y con zoom de calle */
+  const p=map.latLngToContainerPoint(ll);
+  if(map.getZoom()<15||p.y<top+30||p.y>sz.y-30||p.x<30||p.x>sz.x-30){const z=Math.max(map.getZoom(),16);map.setView(map.unproject(map.project(ll,z).add([sz.x/2-want.x,sz.y/2-want.y]),z),z);}
+  setTimeout(()=>$('qPinOk').focus({preventScroll:true}),60);
  }
- function stopPick(){picking=false;window.QPICK=false;document.body.classList.remove('q-picking');$('qBar').hidden=true;}
- function choosePoint(la,lo,mine){
-  if(!inBox(la,lo)){toast(mine?'Parece que no estás en Santander. Toca el mapa donde no has podido aparcar 👆':'Eso se sale de Santander 😅. Toca dentro del municipio.',4000);return;}
-  stopPick();pt={lat:+la.toFixed(5),lng:+lo.toFixed(5)};
-  if(ptMk)ptMk.setLatLng([la,lo]);else ptMk=L.marker([la,lo],{icon:PICK_ICON,interactive:false,zIndexOffset:3000}).addTo(map);
+ function stopPick(keep){picking=false;window.QPICK=false;document.body.classList.remove('q-picking');$('qBar').hidden=true;
+  if(!keep&&ptMk){map.removeLayer(ptMk);ptMk=null;}}
+ function choosePoint(la,lo){
+  if(!inBox(la,lo)){geoMsg('Eso se sale de Santander 😅. Lleva el pin dentro del municipio.');return;}
+  stopPick(true);pt={lat:+la.toFixed(5),lng:+lo.toFixed(5)};
+  if(ptMk){map.removeLayer(ptMk);}ptMk=L.marker([la,lo],{icon:PICK_ICON,interactive:false,zIndexOffset:3000}).addTo(map);
   const z=(refNear(la,lo)||streetNear(la,lo)||'').slice(0,80);pt.zona=z||null;
   $('qWhere').innerHTML='📍 '+esc(mine?'Tu ubicación'+(z?' ('+z+')':''):(z||'Punto marcado en el mapa'))+' <button type="button" class="q-move" id="qMove">Cambiar sitio</button>';
-  $('qMove').onclick=()=>{closeForm();startPick(null,true);};openForm();
+  $('qMove').onclick=()=>{const p={lat:pt.lat,lng:pt.lng};closeForm();startPick(null,p);};openForm();
  }
- map.on('click',e=>{if(picking)choosePoint(e.latlng.lat,e.latlng.lng,false);});
+ map.on('click',e=>{if(picking&&ptMk){ptMk.setLatLng(e.latlng);mine=false;geoMsg('');}});
  function openForm(){mot=null;$('qForm').hidden=false;$('qDone').hidden=true;$('qErr').textContent='';$('qTxt').value='';cnt();
   document.querySelectorAll('.q-mot').forEach(b=>b.setAttribute('aria-pressed','false'));$('qSend').disabled=true;$('qModal').classList.add('on');
   setTimeout(()=>document.querySelector('.q-mot').focus({preventScroll:true}),60);}
@@ -2175,10 +2032,18 @@ if(hm){const la=+hm[1],lo=+hm[2];let lb=null;try{lb=hm[3]?decodeURIComponent(hm[
   }catch(e){$('qErr').textContent=e.message;}
   finally{$('qSend').textContent='Enviar queja 😤';$('qSend').disabled=!mot;}
  };
- $('qBtn').onclick=startPick;$('qCancelPick').onclick=stopPick;
- $('qHere').onclick=()=>{const lv=liveAt();if(lv){choosePoint(lv.lat,lv.lon,true);return;}if(GPS.on&&GPS.last){toast('Parece que no estás en Santander. Toca el mapa donde no has podido aparcar 👆',4000);return;}if(!navigator.geolocation){toast('Tu navegador no comparte ubicación. Toca el mapa 👆');return;}
-  toast('Buscándote… 🛰️',8000);navigator.geolocation.getCurrentPosition(p=>{$('toast').classList.remove('on');choosePoint(p.coords.latitude,p.coords.longitude,true);},
-   ()=>toast('Sin ubicación, ningún drama: toca el mapa donde no has podido aparcar 👆',4500),{enableHighAccuracy:true,timeout:10000,maximumAge:60000});};
+ $('qBtn').onclick=$('qBtn2').onclick=()=>startPick();$('qCancelPick').onclick=()=>stopPick();
+ $('qPinOk').onclick=()=>{if(!ptMk)return;const ll=ptMk.getLatLng();choosePoint(ll.lat,ll.lng);};
+ /* «Usar mi ubicación»: pide la posición UNA vez y solo coloca el pin. Sin seguimiento, y no sale del móvil salvo que envíes la queja */
+ $('qHere').onclick=()=>{const b=$('qHere');
+  if(!window.isSecureContext||!navigator.geolocation){geoMsg('Tu navegador no comparte ubicación. Arrastra el pin hasta el sitio 👆');return;}
+  b.disabled=true;b.textContent='🛰️ Buscándote…';geoMsg('');
+  const end=()=>{b.disabled=false;b.textContent='📍 Usar mi ubicación';};
+  navigator.geolocation.getCurrentPosition(p=>{end();if(!picking)return;const la=p.coords.latitude,lo=p.coords.longitude;
+    if(!inBox(la,lo)){geoMsg('Parece que no estás en Santander 🦑. Arrastra el pin hasta donde no has podido aparcar.');return;}
+    ptMk.setLatLng([la,lo]);mine=true;map.flyTo([la,lo],Math.max(map.getZoom(),17),{duration:.7});geoMsg('📍 Ya está. Si no es exacto, arrastra el pin.');},
+   err=>{end();if(!picking)return;geoMsg(err&&err.code===1?'Sin permiso de ubicación, ningún drama: arrastra el pin hasta el sitio 👆':'No te encuentro ahora mismo. Arrastra el pin hasta el sitio 👆');},
+   {enableHighAccuracy:true,timeout:10000,maximumAge:60000});};
  $('qCancel').onclick=closeForm;$('qOk').onclick=closeForm;
  $('qCard').onclick=()=>{if(!LASTQ||!window.rabaCard)return;closeForm();rabaCard.open({lat:LASTQ.lat,lon:LASTQ.lng,where:LASTQ.where,queja:MOT[LASTQ.motivo]||MOT.otro});};
  $('qModal').addEventListener('click',e=>{if(e.target.id==='qModal')closeForm();});
