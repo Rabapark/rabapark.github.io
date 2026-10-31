@@ -1160,6 +1160,31 @@ try{if(localStorage.getItem('rabuca-intro-v1'))d.classList.add('intro-back');}ca
 @media (max-width:860px){.card-prev{max-height:50vh}.lg-row{padding:11px 10px}}
 @media (max-width:380px){.v-actions .btn.vcard .t{display:none}}
 </style>
+<script>/* Google Consent Mode v2: todo denegado por defecto. gtag.js NO se carga hasta que pulsas «Aceptar» (ver bloque «Cookies» al final) */
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});</script>
+<style id="cookies-css">
+/* aviso de cookies: debajo de hojas, modales y avisos (z 2050+), y oculto mientras la intro está en pantalla */
+html.intro-on #ck{display:none!important}
+#ck{position:fixed;z-index:2040;left:max(12px,env(safe-area-inset-left));bottom:max(12px,env(safe-area-inset-bottom));width:min(430px,calc(100vw - 24px));background:#fff;color:var(--ink);border:1px solid var(--line);border-radius:18px;box-shadow:0 14px 44px #0f2a4755;padding:14px 16px 14px;display:none}
+#ck.on{display:block}
+#ck h2{margin:0 0 6px;font-size:1.02rem;line-height:1.25;letter-spacing:-.01em}
+#ck p{margin:0 0 10px;font-size:.88rem;line-height:1.45;color:#28323f}
+#ck p a,#ck p .ck-more{color:#0b5cad;font-weight:650;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer;font-size:inherit}
+.ck-b{display:flex;gap:10px}
+.ck-b button{flex:1;min-height:46px;border-radius:12px;border:2px solid var(--navy);background:var(--navy);color:#fff;font-weight:800;font-size:1rem;cursor:pointer}
+.ck-b button:hover{filter:brightness(1.15)}
+.ck-b button:focus-visible,#ck .ck-more:focus-visible,#ckOpen:focus-visible,#ckChange:focus-visible{outline:3px solid #f2c14e;outline-offset:2px}
+#ckState{font-weight:700}
+@media (max-width:860px){
+ #ck{left:8px;right:8px;width:auto;bottom:max(8px,env(safe-area-inset-bottom));padding:12px 14px}
+ #ck p{font-size:.84rem;margin-bottom:9px}
+ #ck h2{font-size:.98rem}
+ .ck-b button{min-height:48px}
+}
+@media (max-height:460px) and (orientation:landscape){#ck{width:min(560px,calc(100vw - 24px));padding:10px 14px}#ck p{font-size:.8rem;margin-bottom:6px}.ck-b button{min-height:40px}}
+@media (prefers-reduced-motion:no-preference){#ck.on{animation:ckin .3s ease-out}@keyframes ckin{from{opacity:0;transform:translateY(14px)}}}
+</style>
 </head>
 <body>
 <div id="intro" role="dialog" aria-modal="true" aria-label="Rabuca te explica el mapa" data-s="0">
@@ -1404,11 +1429,22 @@ try{if(localStorage.getItem('rabuca-intro-v1'))d.classList.add('intro-back');}ca
   <p><b>Fuente:</b> <a href="http://datos.santander.es/" target="_blank" rel="noopener">datos.santander.es</a> — Ayuntamiento de Santander, licencia <a href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank" rel="noopener">CC BY 4.0</a>. Datasets: <span class="mono">zonas_ola</span>, <span class="mono">puntos_interes_aparcamiento_subterraneo</span>, <span class="mono">puntos_interes_playa</span>, <span class="mono">plazas_motos</span>, <span class="mono">plazas_pmr</span>, <span class="mono">vados</span>. Descarga: <span id="fecha"></span>. Datos incrustados en este archivo. Mapa base y referencias de destinos © colaboradores de OpenStreetMap (ODbL).</p>
  </details>
 
+
+ <details class="card" id="cookies">
+  <summary>🍪 Cookies y privacidad</summary>
+  <p><b>Resumen:</b> Rabapark solo usa cookies de analítica si tú dices que sí. Si rechazas, no se carga nada de Google y no se guarda ninguna cookie.</p>
+  <p><b>Qué se mide (solo con «Aceptar»):</b> con Google Analytics 4 (Google Ireland Limited) cuento visitas, páginas vistas, duración, tipo de dispositivo y navegador, país o ciudad aproximados y de dónde llegas. Sirve para saber si el mapa se usa y qué mejorar. La IP se anonimiza, y no uso publicidad, ni señales de Google, ni personalización de anuncios. Cookies: <span class="mono">_ga</span> y <span class="mono">_ga_F3TB3ESPNF</span>, de hasta dos años. Google puede tratar los datos fuera de la UE.</p>
+  <p><b>Lo que se guarda en tu navegador sin más:</b> tu elección sobre las cookies, que ya has visto la intro, tus medallas y el tiempo de espera entre quejas. Se queda en tu dispositivo (almacenamiento local) y no se envía a ningún sitio.</p>
+  <p><b>Cómo cambiar de opinión:</b> cuando quieras, con el botón de abajo o con «Cookies» al final de esta página. Al rechazar se borran las cookies de analítica de este sitio. La base legal es tu consentimiento (RGPD, art. 6.1.a, y LSSI, art. 22.2). Responsable: Carlos Pérez del Molino, proyecto personal sin ánimo de lucro.</p>
+  <p>Tu elección ahora: <span id="ckState">sin decidir</span></p>
+  <button class="btn" id="ckChange" type="button">Cambiar mi elección</button>
+ </details>
+
  <footer class="foot">
   <span class="raba" role="img" aria-label="Rabuca saludando"></span>
   Hecho un finde con datos abiertos de Santander <span class="heart">🧡</span><br><small>Mascota oficial (y muy cántabra): <b>Rabuca</b>, una raba en tira, como Dios manda 🦑</small><br>
   Un proyecto de <a href="https://www.linkedin.com/in/carlosperezdelmolino/" target="_blank" rel="noopener"><b>Carlos Pérez del Molino</b></a> · Datos: Ayto. de Santander (CC BY 4.0) · Mapa: © OpenStreetMap<br>
-  <button class="btn sm" id="shareApp" style="margin-top:8px">📣 Compartir el mapa</button>
+  <button class="btn sm" id="shareApp" style="margin-top:8px">📣 Compartir el mapa</button> <button class="btn sm" id="ckOpen" type="button" style="margin-top:8px" aria-controls="ck">🍪 Cookies</button>
  </footer>
 </aside>
 </main>
@@ -1469,6 +1505,12 @@ try{if(localStorage.getItem('rabuca-intro-v1'))d.classList.add('intro-back');}ca
 </div>
 <div id="medal" role="status" aria-live="polite"></div>
 <div id="toast" role="status" aria-live="polite"></div>
+<div id="ck" role="dialog" aria-modal="false" aria-labelledby="ckT" aria-describedby="ckD">
+ <h2 id="ckT">🍪 Rabuca pregunta: ¿unas cookies?</h2>
+ <p id="ckD">Con tu permiso uso Google Analytics para saber cuánta gente mira el mapa. Sin tu permiso no se carga nada, y sin anuncios. Rabuca no se ofende si dices que no. <button class="ck-more" id="ckMore" type="button">Más información</button></p>
+ <div class="ck-b"><button id="ckNo" type="button">Rechazar</button><button id="ckYes" type="button">Aceptar</button></div>
+</div>
+
 
 <script>/* @preserve
  * Leaflet 1.9.4, a JS library for interactive maps. https://leafletjs.com
@@ -2117,6 +2159,42 @@ if(hm){const la=+hm[1],lo=+hm[2];let lb=null;try{lb=hm[3]?decodeURIComponent(hm[
  $('inSlides').addEventListener('touchend',e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;x0=null;
   if(Math.abs(dx)>50&&Math.abs(dx)>Math.abs(dy)*1.3){if(dx<0)s===N?close():go(s+1);else go(s-1);}},{passive:true});
  hero();if(!root.classList.contains('no-intro')){go(0);setTimeout(()=>firstBtn().focus({preventScroll:true}),50);}
+})();
+</script>
+<script>
+/* ===== Cookies: Google Analytics 4 solo con consentimiento (Consent Mode v2). Sin «Aceptar», gtag.js ni se descarga ===== */
+(function(){
+ var GA='G-F3TB3ESPNF',KEY='rabuca-cookies-v1',TTL=365*864e5,loaded=false,mem=null;
+ var ck=document.getElementById('ck'),root=document.documentElement;
+ function read(){var o=mem;try{o=JSON.parse(localStorage.getItem(KEY)||'null')||o;}catch(e){}
+  if(o&&(o.v==='granted'||o.v==='denied')&&Date.now()-o.t<TTL)return o.v;return null;}
+ function save(v){mem={v:v,t:Date.now()};try{localStorage.setItem(KEY,JSON.stringify(mem));}catch(e){}}
+ function load(){window['ga-disable-'+GA]=false;if(loaded)return;loaded=true;
+  gtag('js',new Date());
+  gtag('config',GA,{anonymize_ip:true,allow_google_signals:false,allow_ad_personalization_signals:false});
+  var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+GA;document.head.appendChild(s);}
+ function wipe(){var h=location.hostname,ex='=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/';
+  document.cookie.split(';').forEach(function(c){var n=c.split('=')[0].trim();
+   if(/^_ga($|_)/.test(n)||n==='_gid'||n==='_gat'){document.cookie=n+ex;document.cookie=n+ex+';domain='+h;document.cookie=n+ex+';domain=.'+h;}});}
+ function apply(v){
+  if(v==='granted'){gtag('consent','update',{analytics_storage:'granted',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});load();}
+  else{gtag('consent','update',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});window['ga-disable-'+GA]=true;wipe();}
+  var st=document.getElementById('ckState');if(st)st.textContent=v==='granted'?'has aceptado la analítica':v==='denied'?'has rechazado las cookies':'sin decidir';}
+ function show(focus){ck.classList.add('on');if(focus)document.getElementById('ckYes').focus({preventScroll:true});}
+ function hide(){ck.classList.remove('on');}
+ var back=false;
+ function choose(v){save(v);apply(v);hide();if(back){back=false;var o=document.getElementById('ckOpen');if(o)o.focus({preventScroll:true});}}
+ document.getElementById('ckYes').onclick=function(){choose('granted');};
+ document.getElementById('ckNo').onclick=function(){choose('denied');};
+ function reopen(){back=true;show(true);}
+ document.getElementById('ckOpen').onclick=reopen;
+ document.getElementById('ckChange').onclick=reopen;
+ document.getElementById('ckMore').onclick=function(){
+  if(matchMedia('(max-width:860px)').matches){var m=document.getElementById('more');if(m)m.click();}
+  var d=document.getElementById('cookies');d.open=true;
+  setTimeout(function(){d.scrollIntoView({behavior:'smooth',block:'start'});},matchMedia('(max-width:860px)').matches?320:0);};
+ document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ck.classList.contains('on')&&read()&&!root.classList.contains('intro-on'))hide();});
+ var v=read();apply(v||'denied');if(!v)show(false);
 })();
 </script>
 </body>
