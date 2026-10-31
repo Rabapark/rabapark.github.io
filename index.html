@@ -1185,6 +1185,81 @@ html.intro-on #ck{display:none!important}
 @media (max-height:460px) and (orientation:landscape){#ck{width:min(560px,calc(100vw - 24px));padding:10px 14px}#ck p{font-size:.8rem;margin-bottom:6px}.ck-b button{min-height:40px}}
 @media (prefers-reduced-motion:no-preference){#ck.on{animation:ckin .3s ease-out}@keyframes ckin{from{opacity:0;transform:translateY(14px)}}}
 </style>
+<style id="ux-simple-css">
+/* ===== UX simple (móvil primero): buscar y quejarse delante, lo demás en «Más» ===== */
+.info-b,.mas,#sheetBack{display:none}
+.q-cm{margin:10px 0 0}
+.q-cm>summary{cursor:pointer;font-weight:700;font-size:.9rem;min-height:44px;display:flex;align-items:center;color:var(--ink);list-style:none}
+.q-cm>summary::-webkit-details-marker{display:none}
+.q-cm[open]>summary{min-height:36px}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.q-done .raba{animation:qd-pop .6s cubic-bezier(.2,1.5,.4,1) both}
+@keyframes qd-pop{from{transform:scale(.4) rotate(-14deg);opacity:0}to{transform:none;opacity:1}}
+.wl-scale{align-items:center;gap:8px;margin:6px 0 2px;font-size:1.1rem}
+.wl-scale i{flex:1;max-width:200px;height:9px;border-radius:5px;background:linear-gradient(90deg,#2c7bb6 0 20%,#abd9e9 20% 40%,#ffffbf 40% 60%,#fdae61 60% 80%,#d7191c 80%)}
+@media (max-width:860px){
+ /* cabecera: más baja, una sola «i» para el aviso de estimación */
+ .top{padding:6px 12px;gap:10px}
+ .top h1{font-size:1.05rem}
+ .top p{font-size:.8rem}
+ #askRabuca{display:none}
+ .info-b{display:flex;flex:none;align-items:center;justify-content:center;width:44px;height:44px;border-radius:50%;border:1.5px solid #ffffff66;background:#ffffff14;color:#fff;font:italic 800 1.15rem Georgia,serif;cursor:pointer;padding:0}
+ .info-b[aria-expanded="true"]{background:#ffffff33}
+ .honest{display:none}
+ .honest.show{display:block;position:fixed;z-index:1600;top:var(--hh,64px);left:10px;right:10px;border:1px solid #f0d58a;border-radius:14px;box-shadow:0 12px 32px #0f2a4755;padding:12px 14px;font-size:.9rem;line-height:1.4}
+ /* buscador: barra + 3 atajos, sin leyenda flotante */
+ .tb-q{display:none}
+ #chipSummer{display:none}
+ .chip{min-height:40px}
+ /* barra de abajo: «Quejarme» manda; «Más» es secundario */
+ .mbar{gap:10px;bottom:calc(16px + env(safe-area-inset-bottom))}
+ .mbar button{height:58px}
+ .mb-q{flex:1;font-size:1.15rem;background:linear-gradient(180deg,#ee4452,#d62f3c);box-shadow:0 8px 24px #e6394655,0 2px 0 #a8202b}
+ .mb-more{flex:none;width:92px;background:#fff;color:var(--navy);border:2px solid var(--navy)!important;font-size:1rem}
+ .mb-dots{font-size:1.2rem;line-height:1;margin-right:2px}
+ .verdict{bottom:calc(88px + env(safe-area-inset-bottom));max-height:calc(100% - 88px - 130px)}
+ #toast{bottom:calc(96px + env(safe-area-inset-bottom))}
+ /* tarjeta de veredicto: veredicto + parking; compartir, tarjeta y modo verano van a «Más» o tras quejarte */
+ #vShare,#vCard,#vSum{display:none}
+ .v-actions{margin-top:8px}
+ .v-actions #vPk{flex:1;background:var(--navy);color:#fff;border-color:var(--navy)}
+ .verdict .v-disc:last-child{display:block;background:none;padding:0;margin-top:6px;font-size:.72rem;color:var(--mut)}
+ .wl-scale.m{display:flex}
+ .v-hello+.v-quip{margin-top:6px}
+ /* hoja «Más» */
+ .mas{display:grid;gap:8px;padding:2px 0 8px}
+ .mas[hidden]{display:none}
+ .mn{display:flex;align-items:center;gap:12px;width:100%;min-height:58px;padding:8px 12px;border:1px solid var(--line);border-radius:14px;background:#fff;text-align:left;text-decoration:none;color:var(--ink);cursor:pointer}
+ .mn .e{flex:none;width:30px;text-align:center;font-size:1.45rem;line-height:1}
+ .mn .t{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.25}
+ .mn .t b{font-size:.98rem}
+ .mn small{color:var(--mut);font-size:.78rem}
+ .mn:active{background:#f1f4f9}
+ .mn-sw input{flex:none;width:46px;height:26px;appearance:none;-webkit-appearance:none;border-radius:13px;background:#c5ccd6;position:relative;transition:background .2s;margin:0}
+ .mn-sw input:after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 3px #0004;transition:transform .2s}
+ .mn-sw input:checked{background:#ff7a45}
+ .mn-sw input:checked:after{transform:translateX(20px)}
+ .panel>[data-sec]{display:none}
+ .panel>[data-sec].sec-on{display:block}
+ #sheetBack{display:block;flex:none;width:40px;height:40px;border-radius:50%;border:0;background:#e6e9ef;font-size:18px;cursor:pointer}
+ #sheetBack[hidden]{display:none}
+ .sheet-h .grab{pointer-events:none}
+ /* queja: el motivo de un toque; comentario plegado */
+ .q-modal .box{padding-top:16px}
+ .q-done .share-row .btn{min-width:0}
+ /* aviso de cookies más compacto (mismo texto y mismos botones) */
+ #ck{padding:10px 12px}
+ #ck h2{font-size:.95rem;margin-bottom:4px}
+ #ck p{font-size:.8rem;line-height:1.38;margin-bottom:8px}
+}
+@media (max-width:860px) and (prefers-reduced-motion:no-preference){
+ .mb-q{animation:qwob 1.2s ease-in-out 2s 2}
+ @keyframes qwob{0%,100%{transform:none}25%{transform:rotate(-2deg) scale(1.03)}60%{transform:rotate(2deg) scale(1.03)}}
+}
+
+#ck.on{z-index:2200}
+</style>
+
 </head>
 <body>
 <div id="intro" role="dialog" aria-modal="true" aria-label="Rabuca te explica el mapa" data-s="0">
@@ -1258,10 +1333,10 @@ html.intro-on #ck{display:none!important}
      <div class="bub">Más fácil que pedir unas rabas:<ul>
       <li><span>👆</span><span><b>Toca el mapa.</b> Te digo cuánto vas a sufrir en esa calle y dónde tienes el parking de escape.</span></li>
       <li><span>🔎</span><span><b>Buscador.</b> Escribe a dónde vas: Valdecilla, El Sardinero, una calle…</span></li>
-      <li><span>🏆</span><span><b>Ranking.</b> El top 5 para llorar y el top 5 de remansos de paz.</span></li>
-      <li><span>📣</span><span><b>Compartir.</b> Para presumir de sufrimiento en el grupo de la cuadrilla.</span></li>
+      <li><span>😤</span><span><b>Quejarte.</b> El botón rojo, siempre a mano. Una vez por cada vuelta de más.</span></li>
+      <li><span>⋯</span><span><b>Más.</b> Ranking, medallas, modo verano y compartir con la cuadrilla.</span></li>
      </ul></div>
-     <p class="bub">Si te pierdes, dale al botón <b>?</b> de arriba y vuelvo a salir. Venga, ¡al lío!</p>
+     <p class="bub">Si te pierdes, pídeme que te lo cuente otra vez: el botón <b>?</b> de arriba o, en el móvil, <b>⋯ Más</b>. Venga, ¡al lío!</p>
      <a class="li-link dk" href="https://www.linkedin.com/in/carlosperezdelmolino/" target="_blank" rel="noopener" aria-label="¿Sugerencias o ideas? Escribe a Carlos Pérez del Molino en LinkedIn (se abre en una pestaña nueva)"><svg class="li-ic" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.064 2.064 0 1 1 0-4.128 2.064 2.064 0 0 1 0 4.128zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg><span>¿Sugerencias o ideas? Escríbeme en LinkedIn</span></a>
     </section>
    </div>
@@ -1276,12 +1351,13 @@ html.intro-on #ck{display:none!important}
 <header class="top">
  <div class="logo raba" role="img" aria-label="Rabuca, la mascota del ISA Santander"></div>
  <div class="ttl">
-  <h1>Índice de Sufrimiento Aparcacionista <span class="isa d">(ISA) · Santander</span></h1>
-  <p><span class="d">¿Cuánto vas a sufrir para aparcar? Un proyecto de finde con datos abiertos del Ayuntamiento.</span><span class="m">Santander · ¿cuánto vas a sufrir para aparcar?</span></p>
+  <h1><span class="d">Índice de Sufrimiento Aparcacionista</span><span class="m">Rabapark · Santander</span> <span class="isa d">(ISA) · Santander</span></h1>
+  <p><span class="d">¿Cuánto vas a sufrir para aparcar? Un proyecto de finde con datos abiertos del Ayuntamiento.</span><span class="m">¿Cuánto vas a sufrir para aparcar?</span></p>
  </div>
+ <button class="info-b" id="infoBtn" type="button" aria-expanded="false" aria-controls="honest" aria-label="Aviso: esto es una estimación"><span aria-hidden="true">i</span></button>
  <button class="ask" id="askRabuca" type="button" aria-label="Pregúntale a Rabuca: repetir la explicación" title="Pregúntale a Rabuca"><span class="raba" aria-hidden="true"></span><span class="t">Pregúntale a Rabuca</span><span class="q" aria-hidden="true">?</span></button>
 </header>
-<div class="honest"><span class="m">⚠️ <b>Estimación</b>, no plazas libres en tiempo real · <a href="#metodo" class="lnkMet">¿Cómo?</a></span><span class="d">⚠️ <b>No te dice dónde hay hueco ahora mismo:</b> el ISA es <b>presión estimada y estructural</b> (zona OLA, centro, playas, vados, parkings), <b>no plazas libres en tiempo real</b>. <a href="#metodo" class="lnkMet">Cómo se calcula</a></span></div>
+<div class="honest" id="honest"><span class="m">⚠️ <b>Estimación</b>, no plazas libres en tiempo real · <a href="#metodo" class="lnkMet">¿Cómo?</a></span><span class="d">⚠️ <b>No te dice dónde hay hueco ahora mismo:</b> el ISA es <b>presión estimada y estructural</b> (zona OLA, centro, playas, vados, parkings), <b>no plazas libres en tiempo real</b>. <a href="#metodo" class="lnkMet">Cómo se calcula</a></span></div>
 <main class="wrap">
 <section class="mapcol">
  <div id="map" role="application" aria-label="Mapa del Índice de Sufrimiento Aparcacionista"></div>
@@ -1298,11 +1374,23 @@ html.intro-on #ck{display:none!important}
  </div>
  <div class="verdict" id="verdict"></div>
  <div class="q-bar" id="qBar" hidden role="status"><b>😤 ¿Dónde no has podido aparcar?</b><span class="q-bar-t">Arrastra el pin o toca el mapa para moverlo.</span><div class="q-bar-b"><button type="button" class="btn pri" id="qPinOk">✅ Es aquí</button><button type="button" class="btn" id="qCancelPick">Cancelar</button></div><button type="button" class="q-geo" id="qHere">📍 Usar mi ubicación</button><p class="q-geo-msg" id="qGeoMsg" aria-live="polite"></p></div>
- <div class="mbar"><button class="mb-q" id="qBtn2" type="button">😤 Me quejo aquí</button><button class="mb-more" id="more" aria-controls="panel">🏆 Ranking</button></div>
+ <div class="mbar"><button class="mb-q" id="qBtn2" type="button">😤 Quejarme</button><button class="mb-more" id="more" type="button" aria-controls="panel" aria-label="Más opciones: ranking, medallas, compartir, modo verano, información y cookies"><span class="mb-dots" aria-hidden="true">⋯</span> Más</button></div>
 </section>
 <div class="scrim" id="scrim"></div>
 <aside class="panel" id="panel">
- <div class="sheet-h"><span class="grab"></span><b>Ranking, capas y cómo funciona</b><button id="sheetX" aria-label="Cerrar panel">✕</button></div>
+ <div class="sheet-h"><span class="grab"></span><button id="sheetBack" type="button" hidden aria-label="Volver a Más">←</button><b id="sheetT">Más</b><button id="sheetX" aria-label="Cerrar panel">✕</button></div>
+ <nav class="mas" id="mas" aria-label="Más opciones">
+  <button type="button" class="mn" data-go="rank"><span class="e">🏆</span><span class="t"><b>Ranking y liga</b><small>Dónde se sufre más y dónde menos</small></span></button>
+  <button type="button" class="mn" data-go="quejas"><span class="e">😤</span><span class="t"><b>Quejas y datos abiertos</b><small>Lo que ha sufrido la gente de verdad</small></span></button>
+  <button type="button" class="mn" data-go="medallas"><span class="e">🏅</span><span class="t"><b>Tus medallas</b><small id="mnMed">Solo en este navegador</small></span></button>
+  <button type="button" class="mn" id="mnShare"><span class="e">📣</span><span class="t"><b>Compartir</b><small>Presume de sufrimiento en el grupo</small></span></button>
+  <label class="mn mn-sw" for="mnSummer"><span class="e">☀️</span><span class="t"><b>Modo verano</b><small>Las playas pesan el doble</small></span><input type="checkbox" id="mnSummer" role="switch"></label>
+  <button type="button" class="mn" data-go="capas"><span class="e">🗺️</span><span class="t"><b>Capas y leyenda</b><small>Qué significa cada color y cada icono</small></span></button>
+  <button type="button" class="mn" data-go="como"><span class="e">ℹ️</span><span class="t"><b>Cómo funciona</b><small>El cálculo, los datos y sus límites</small></span></button>
+  <button type="button" class="mn" id="mnIntro"><span class="e">🦑</span><span class="t"><b>Que Rabuca me lo cuente otra vez</b><small>La intro de 7 pasos</small></span></button>
+  <button type="button" class="mn" data-go="cookies"><span class="e">🍪</span><span class="t"><b>Cookies y privacidad</b><small>Cambiar mi elección</small></span></button>
+  <a class="mn" href="https://www.linkedin.com/in/carlosperezdelmolino/" target="_blank" rel="noopener"><span class="e">👋</span><span class="t"><b>Ideas, fallos o sugerencias</b><small>Habla con Carlos en LinkedIn (pestaña nueva)</small></span></a>
+ </nav>
  <div class="card">
   <h2>El ranking</h2>
   <div class="tabs"><button class="tab on" data-t="cry">😭 Top 5 para llorar</button><button class="tab" data-t="zen">😌 Top 5 remansos</button></div>
@@ -1472,9 +1560,10 @@ html.intro-on #ck{display:none!important}
    <p class="q-where" id="qWhere"></p>
    <p class="q-lbl">¿Qué te ha pasado?</p>
    <div class="q-mots" id="qMots" role="group" aria-label="Motivo de la queja"></div>
-   <label class="q-lbl" for="qTxt">Comentario (opcional)</label>
+   <details class="q-cm" id="qCm"><summary>💬 Añadir un comentario (opcional)</summary>
+   <label class="q-lbl sr" for="qTxt">Comentario (opcional)</label>
    <textarea id="qTxt" maxlength="280" rows="3" placeholder="Ej.: tres vueltas y al final al parking. Sin enlaces, por favor."></textarea>
-   <div class="q-cnt" id="qCnt" aria-live="polite">0/280</div>
+   <div class="q-cnt" id="qCnt" aria-live="polite">0/280</div></details>
    <p class="q-priv">🔒 <b>Anónima.</b> No guardamos nombre, correo ni IP. Se publica como datos abiertos (CC BY 4.0): no pongas datos personales ni matrículas.</p>
    <details class="q-why"><summary>Cómo quejarte y para qué sirve</summary><p>Marca dónde no has podido aparcar, elige el motivo y envía. Cada queja se suma a un mapa público que cualquiera puede descargar (CSV/GeoJSON): vecinos, prensa o el propio Ayuntamiento. Muchas quejas juntas en el mismo sitio dicen más que mil vueltas a la manzana.</p></details>
    <p class="q-err" id="qErr" role="alert"></p>
@@ -1483,10 +1572,10 @@ html.intro-on #ck{display:none!important}
   <div id="qDone" hidden class="q-done">
    <span class="raba" aria-hidden="true"></span>
    <h3>¡Queja registrada!</h3>
-   <p>El Ayuntamiento no lo sabe aún, pero lo va a saber. 🦑</p>
+   <p id="qReact">El Ayuntamiento no lo sabe aún, pero lo va a saber. 🦑</p>
    <p class="q-liga" id="qLiga"></p>
    <small class="note">Ya está en el mapa (capa «Quejas ciudadanas») y en los datos abiertos.</small>
-   <div class="share-row"><button class="btn pri" id="qCard" type="button">🖼️ Presume de queja</button><button class="btn" id="qOk" type="button">Volver al mapa</button></div>
+   <div class="share-row"><button class="btn pri" id="qCard" type="button">🖼️ Presume de queja</button><button class="btn" id="qLigaBtn" type="button">🏆 Ver la liga</button><button class="btn" id="qOk" type="button">Volver al mapa</button></div>
   </div>
  </div>
 </div>
@@ -1660,7 +1749,8 @@ let CUR=null,meMk=null,lastShare='';
 const V=$('verdict');
 function showIntro(){
  V.innerHTML=`<button class="v-close" aria-label="Cerrar">✕</button><p class="v-where v-ix">Bienvenida/o al</p><div class="v-hello"><span class="raba" role="img" aria-label="Rabuca"></span><div class="v-intro-t" style="font-weight:900;font-size:1.15rem;line-height:1.25;padding-right:34px">¿Cuánto vas a sufrir? <span style="white-space:nowrap">😇→💀</span></div></div>
- <p class="v-quip" style="font-style:normal">Soy Rabuca 🦑. Toca el mapa o busca tu destino y te diré cuánto vas a sufrir para aparcar… y dónde está tu parking de escape. ¿Ya lo has sufrido? Pulsa <b>😤 Me quejo aquí</b>.</p>
+ <p class="v-quip" style="font-style:normal"><span class="d">Soy Rabuca 🦑. Toca el mapa o busca tu destino y te diré cuánto vas a sufrir para aparcar… y dónde está tu parking de escape. ¿Ya lo has sufrido? Pulsa <b>😤 Me quejo aquí</b>.</span><span class="m">Busca a dónde vas o toca el mapa y Rabuca te lo cuenta. ¿Ya lo has sufrido? Quéjate abajo.</span></p>
+ <div class="wl-scale m" aria-hidden="true"><span>😇</span><i></i><span>💀</span></div>
  <div class="v-disc v-ix">Presión estimada con datos abiertos, <b>no plazas libres en tiempo real</b>.</div>`;
  V.classList.remove('hide');
 }
@@ -1689,7 +1779,7 @@ function verdict(lat,lon,label,silent){
  <div class="meter"><i style="left:${Math.min(99.5,Math.max(.5,x.s))}%"></i></div>
  <p class="v-quip">«${esc(quip)}»</p>
  <div class="escape">🅿️ <b>Parking de escape:</b> ${esc_txt}${(()=>{const o=nearObras(lat,lon,np.d);return o?`<span class="obras-n">🚧 El ${esc(o.nombre.replace(/^Parking /,''))} ${OBRAS_ESC}</span>`:'';})()}<br><small style="color:var(--mut)">Sin datos de ocupación: puede estar lleno.</small></div>
- <div class="v-actions"><button class="btn pri" id="vShare">📣 Compartir mi sufrimiento</button><button class="btn vcard" id="vCard" title="Crear una tarjeta para compartir" aria-label="Crear tarjeta para compartir">🖼️<span class="t"> Tarjeta</span></button><button class="btn" id="vPk" title="Ver el parking en el mapa" aria-label="Ver parking de escape">🅿️</button></div>
+ <div class="v-actions"><button class="btn pri" id="vShare">📣 Compartir mi sufrimiento</button><button class="btn vcard" id="vCard" title="Crear una tarjeta para compartir" aria-label="Crear tarjeta para compartir">🖼️<span class="t"> Tarjeta</span></button><button class="btn" id="vPk" title="Ver el parking en el mapa" aria-label="Ver parking de escape">🅿️<span class="m"> Ver el parking en el mapa</span></button></div>
  ${(x.k.B>=.5&&!$('summer').checked)?'<button class="hint" id="vSum">☀️ ¿Y en pleno agosto? Activa el modo verano →</button>':''}
  <details class="v-break"><summary>¿Por qué este número?</summary><table>
  <tr><td>🔵 Zona azul (O) · cobertura 250 m ${pct(c.cov)}, a ${c.dO} m</td><td>${pct(x.k.O)}</td></tr>
@@ -1711,9 +1801,38 @@ map.on('click',e=>{if(window.QPICK)return;verdict(e.latlng.lat,e.latlng.lng,null
  if(mob){const vt=V.getBoundingClientRect().top-map.getContainer().getBoundingClientRect().top;if(e.containerPoint.y>vt-24)map.panTo(offC(e.latlng.lat,e.latlng.lng,map.getZoom()));}});
 
 /* ===== Bottom sheet (móvil) ===== */
-function openSheet(){if(!matchMedia('(max-width:860px)').matches)return;$('panel').classList.add('open');$('scrim').classList.add('on');}
+const SECT={rank:'Ranking y liga',quejas:'Quejas ciudadanas',medallas:'Tus medallas',capas:'Capas y leyenda',como:'Cómo funciona',cookies:'Cookies y privacidad'};
+function showSec(sec){const P=$('panel');P.dataset.view=sec||'menu';$('mas').hidden=!!sec;
+ [...P.children].forEach(el=>{if(el.dataset&&el.dataset.sec)el.classList.toggle('sec-on',el.dataset.sec===sec);});
+ if(sec==='cookies')$('cookies').open=true;
+ $('sheetT').textContent=sec?SECT[sec]:'Más';$('sheetBack').hidden=!sec;P.scrollTop=0;}
+function openSheet(sec){if(!matchMedia('(max-width:860px)').matches)return;showSec(sec);$('mnSummer').checked=$('summer').checked;
+ const mc=$('medCount').textContent;$('mnMed').textContent=mc?mc+' conseguidas':'Solo en este navegador';
+ $('panel').classList.add('open');$('scrim').classList.add('on');}
 function closeSheet(){$('panel').classList.remove('open');$('scrim').classList.remove('on');}
-$('more').onclick=openSheet;$('sheetX').onclick=closeSheet;$('scrim').onclick=closeSheet;
+$('more').onclick=()=>openSheet();$('sheetX').onclick=closeSheet;$('scrim').onclick=closeSheet;
+/* Menú «Más» (móvil): cada entrada abre una sección de la hoja; lo importante (buscar, quejarse) no vive aquí */
+(()=>{const P=$('panel'),sec={};
+ const put=(el,k)=>{if(el){el.dataset.sec=k;}};
+ put($('rank').closest('.card'),'rank');put($('liga'),'rank');put($('quejas'),'quejas');put($('medallas'),'medallas');
+ put(document.querySelector('.li-card'),'como');put(document.querySelector('.hero-stats').closest('.card'),'como');
+ put($('scale').closest('.card'),'capas');put($('L_heat').closest('.card'),'capas');put($('summer').closest('details'),'capas');
+ put($('fantasma'),'como');put($('metodo'),'como');put($('metodo').nextElementSibling,'como');put($('cookies'),'cookies');put(document.querySelector('footer.foot'),'como');
+ $('mas').addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b){showSec(b.dataset.go);}});
+ $('sheetBack').onclick=()=>showSec();
+ $('mnShare').onclick=()=>{closeSheet();share(!!(CUR&&CUR.l));};
+ $('mnIntro').onclick=()=>{closeSheet();$('askRabuca').click();};
+ $('mnSummer').addEventListener('change',()=>{$('summer').checked=$('mnSummer').checked;$('summer').dispatchEvent(new Event('input'));
+  toast($('summer').checked?'☀️ Modo verano: las playas pesan el doble. Suerte en El Sardinero.':'Modo verano desactivado. Vuelve el orbayu 🌧️');});
+ window.openSheetSec=openSheet;showSec();
+ /* aviso de estimación (el icono «i» de la cabecera) */
+ const H=$('honest'),B=$('infoBtn');
+ function hh(){document.documentElement.style.setProperty('--hh',document.querySelector('header.top').getBoundingClientRect().bottom+6+'px');}
+ function info(on){hh();H.classList.toggle('show',on);B.setAttribute('aria-expanded',String(on));}
+ B.onclick=e=>{e.stopPropagation();info(!H.classList.contains('show'));};
+ document.addEventListener('click',e=>{if(H.classList.contains('show')&&!H.contains(e.target))info(false);});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&H.classList.contains('show'))info(false);});
+})();
 (()=>{let y0=null;const h=document.querySelector('.sheet-h');h.addEventListener('touchstart',e=>{y0=e.touches[0].clientY;},{passive:true});
  h.addEventListener('touchend',e=>{if(y0!==null&&e.changedTouches[0].clientY-y0>50)closeSheet();y0=null;});})();
 /* ===== Avisos ===== */
@@ -1752,7 +1871,8 @@ $('sugg').addEventListener('mousedown',e=>{const li=e.target.closest('li[data-i]
 $('q').addEventListener('blur',()=>setTimeout(()=>$('sugg').classList.remove('on'),150));
 /* atajos */
 const CH=PLACES.filter(p=>p.chip);
-$('chips').innerHTML=`<button class="chip" id="chipSummer">☀️ Modo verano</button>`+CH.map((p,i)=>`<button class="chip" data-i="${i}">${p.t} ${esc(p.chip)}</button>`).join('');
+const MCH=['Centro','Sardinero','Valdecilla'];
+$('chips').innerHTML=`<button class="chip" id="chipSummer">☀️ Modo verano</button>`+CH.map((p,i)=>mob&&!MCH.includes(p.chip)?'':`<button class="chip" data-i="${i}">${p.t} ${esc(p.chip)}</button>`).join('');
 $('chips').addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;
  if(b.id==='chipSummer'){$('summer').checked=!$('summer').checked;recolor();toast($('summer').checked?'☀️ Modo verano: las playas pesan el doble. Suerte en El Sardinero.':'Modo verano desactivado. Vuelve el orbayu 🌧️');return;}
  const p=CH[+b.dataset.i];goTo(p.lat,p.lon,p.t+' '+p.n,16);});
@@ -1789,7 +1909,7 @@ $('copy').onclick=()=>copyTxt($('shareTxt').value);
 $('mClose').onclick=()=>$('modal').classList.remove('on');
 $('modal').addEventListener('click',e=>{if(e.target.id==='modal')$('modal').classList.remove('on');});
 $('shareApp').onclick=()=>{closeSheet();share(false);};
-document.querySelectorAll('.lnkMet').forEach(a=>a.onclick=e=>{e.preventDefault();openSheet();const m=$('metodo');m.open=true;setTimeout(()=>m.scrollIntoView({behavior:'smooth',block:'start'}),mob?320:0);});
+document.querySelectorAll('.lnkMet').forEach(a=>a.onclick=e=>{e.preventDefault();$('honest').classList.remove('show');openSheet('como');const m=$('metodo');m.open=true;setTimeout(()=>m.scrollIntoView({behavior:'smooth',block:'start'}),mob?320:0);});
 
 /* ===== Resto de capas (igual que el prototipo) ===== */
 const ola=L.geoJSON(D.ola,{pane:'olaP',interactive:false,style:{color:'#1f6fd1',weight:1.5,fillColor:'#1f6fd1',fillOpacity:.1,dashArray:'4 3'}});
@@ -1808,6 +1928,7 @@ const motoL=dot(D.motos,'#7b3fb5',r=>`<b>Plazas de motos</b><br>${esc(prettyStre
 const pmrL=dot(D.pmr,'#12924a',r=>`<b>Plaza PMR ♿</b><br>${esc(prettyStreet(r.calle))} ${esc(r.num)}<br>${plazas(r)} · regulación: ${esc(r.Regulacion||'—')}${r.Indicacion?'<br><small>'+esc(r.Indicacion)+'</small>':''}`);
 const vadoL=dot(D.vados,'#666',r=>`<b>Vado</b><br>${esc(prettyStreet(r.calle))} ${esc(r.num)}${r.Autorizacion?'<br><small>Autorización '+esc(r.Autorizacion)+'</small>':''}`);
 const layers={L_heat:heat,L_ola:ola,L_pk:pkL,L_pl:plL,L_moto:motoL,L_pmr:pmrL,L_vado:vadoL};
+if(mob){$('L_pl').checked=false;$('L_ola').checked=false;}/* móvil: menos ruido; se activan en Más → Capas */
 Object.entries(layers).forEach(([id,l])=>{const cb=$(id);if(cb.checked)l.addTo(map);cb.addEventListener('change',()=>cb.checked?l.addTo(map):map.removeLayer(l));});
 
 const lg=L.control({position:'bottomright'});
@@ -2049,6 +2170,15 @@ if(hm){const la=+hm[1],lo=+hm[2];let lb=null;try{lb=hm[3]?decodeURIComponent(hm[
  $('qMots').innerHTML=Object.entries(MOT).map(([k,m])=>`<button type="button" class="q-mot" data-k="${k}" aria-pressed="false" style="--c:${m.c}"><span>${m.em}</span>${esc(m.t)}</button>`).join('');
  $('qMots').addEventListener('click',e=>{const b=e.target.closest('.q-mot');if(!b)return;mot=b.dataset.k;document.querySelectorAll('.q-mot').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));$('qSend').disabled=false;$('qErr').textContent='';});
  $('qTxt').addEventListener('input',cnt);
+ const REACT={
+  sin_sitio:['Otra vuelta a la manzana a la saca. Rabuca lo apunta con tinta de calamar. 🦑','Dar vueltas no sale en ninguna estadística, pero tu queja sí. Apuntada.'],
+  zona_azul:['Todo azul, como el mar y como la cuenta del parquímetro. Rabuca lo apunta. 🔵','Zona azul hasta donde alcanza la vista. Queja apuntada, sufridor.'],
+  carga_descarga:['Furgoneta en doble fila: un clásico de todas las ciudades. Apuntado en la libreta de Rabuca. 🚚','Rabuca ha tomado nota. Y ha tocado el claxon, por solidaridad.'],
+  parking_lleno:['Hasta el parking dice «completo». Rabuca lo apunta y suspira. 🅿️','Cartel de «completo»: el más puntual de la ciudad. Queja apuntada.'],
+  mal_aparcados:['Un coche ocupando dos plazas y media. Rabuca lo apunta con cara de pocos amigos. 🚫','Aparcar así es un arte, pero de los malos. Queja apuntada.'],
+  otro:['Rabuca no sabía que se podía sufrir así, pero lo apunta igualmente. 🦑','El Ayuntamiento no lo sabe aún, pero lo va a saber. 🦑']};
+ new MutationObserver(()=>{if($('qModal').classList.contains('on'))$('qCm').open=false;}).observe($('qModal'),{attributes:true,attributeFilter:['class']});
+ $('qLigaBtn').onclick=()=>{closeForm();if(matchMedia('(max-width:860px)').matches)openSheet('rank');else $('liga').scrollIntoView({behavior:'smooth',block:'start'});};
  const ERR={'Sin enlaces':'Sin enlaces en el comentario, por favor. Rabuca no hace publicidad 🦑','Demasiadas':'Hay mucha gente quejándose a la vez. Prueba en un minuto 🙏','ya esta registrada':'Esa queja ya está apuntada. ¡Gracias!'};
  $('qSend').onclick=async()=>{
   if(!pt||!mot){$('qErr').textContent='Elige un motivo 👆';return;}
@@ -2069,7 +2199,7 @@ if(hm){const la=+hm[1],lo=+hm[2];let lb=null;try{lb=hm[3]?decodeURIComponent(hm[
    $('qLiga').innerHTML=row&&LOADED?ligaLine(done):'';
    if(!cb.checked){cb.checked=true;qL.addTo(map);}
    if(ptMk){map.removeLayer(ptMk);ptMk=null;}
-   $('qForm').hidden=true;$('qDone').hidden=false;setTimeout(()=>$('qCard').focus({preventScroll:true}),50);
+   $('qReact').textContent=pick(REACT[mot]||REACT.otro);$('qForm').hidden=true;$('qDone').hidden=false;setTimeout(()=>$('qCard').focus({preventScroll:true}),50);
    if(window.rabaMedallas)setTimeout(()=>rabaMedallas.queja({zona:zq,motivo:mot,pionero:pion}),650);
   }catch(e){$('qErr').textContent=e.message;}
   finally{$('qSend').textContent='Enviar queja 😤';$('qSend').disabled=!mot;}
@@ -2190,7 +2320,7 @@ if(hm){const la=+hm[1],lo=+hm[2];let lb=null;try{lb=hm[3]?decodeURIComponent(hm[
  document.getElementById('ckOpen').onclick=reopen;
  document.getElementById('ckChange').onclick=reopen;
  document.getElementById('ckMore').onclick=function(){
-  if(matchMedia('(max-width:860px)').matches){var m=document.getElementById('more');if(m)m.click();}
+  if(matchMedia('(max-width:860px)').matches&&window.openSheetSec)window.openSheetSec('cookies');
   var d=document.getElementById('cookies');d.open=true;
   setTimeout(function(){d.scrollIntoView({behavior:'smooth',block:'start'});},matchMedia('(max-width:860px)').matches?320:0);};
  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&ck.classList.contains('on')&&read()&&!root.classList.contains('intro-on'))hide();});
